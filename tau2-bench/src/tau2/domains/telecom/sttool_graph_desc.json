@@ -1,0 +1,448 @@
+{
+  "nodes": [
+    {
+      "id": "disconnect_vpn",
+      "desc": "Disconnects any active VPN (Virtual Private Network) connection. Stops routing your internet traffic through a VPN server, which might affect connection speed or access to content.",
+      "parameters": []
+    },
+    {
+      "id": "transfer_to_human_agents",
+      "desc": "Transfer the user to a human agent, with a summary of the user's issue.",
+      "parameters": [
+        {
+          "name": "summary",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "set_network_mode_preference",
+      "desc": "Changes the type of cellular network your phone prefers to connect to (e.g., 5G, LTE/4G, 3G). Higher-speed networks (LTE/5G) provide faster data but may use more battery.",
+      "parameters": [
+        {
+          "name": "mode",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "toggle_wifi_calling",
+      "desc": "Toggles Wi-Fi Calling ON or OFF. This feature allows you to make and receive calls over Wi-Fi instead of the cellular network, which can help in areas with weak cellular signal.",
+      "parameters": []
+    },
+    {
+      "id": "toggle_data",
+      "desc": "Toggles your phone's mobile data connection ON or OFF. Controls whether your phone can use cellular data for internet access when Wi-Fi is unavailable.",
+      "parameters": []
+    },
+    {
+      "id": "toggle_roaming",
+      "desc": "Toggles Data Roaming ON or OFF. When ON, your phone can use data networks in areas outside your carrier's coverage.",
+      "parameters": []
+    },
+    {
+      "id": "reseat_sim_card",
+      "desc": "Simulates removing and reinserting your SIM card. This can help resolve recognition issues.",
+      "parameters": []
+    },
+    {
+      "id": "grant_app_permission",
+      "desc": "Gives a specific permission to an app (like access to storage, camera, or location). Required for some app functions to work properly.",
+      "parameters": [
+        {
+          "name": "app_name",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "permission",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "enable_roaming",
+      "desc": "Enables international roaming on a line.",
+      "parameters": [
+        {
+          "name": "customer_id",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "line_id",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "resume_line",
+      "desc": "Resumes a suspended line.",
+      "parameters": [
+        {
+          "name": "customer_id",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "line_id",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "reset_apn_settings",
+      "desc": "Resets your APN settings to the default settings.",
+      "parameters": []
+    },
+    {
+      "id": "toggle_data_saver_mode",
+      "desc": "Toggles Data Saver mode ON or OFF. When ON, it reduces data usage, which may affect data speed.",
+      "parameters": []
+    },
+    {
+      "id": "refuel_data",
+      "desc": "Refuels data for a specific line, adding to the customer's bill.",
+      "parameters": [
+        {
+          "name": "customer_id",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "line_id",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "gb_amount",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "send_payment_request",
+      "desc": "Sends a payment request to the customer for a specific bill.",
+      "parameters": [
+        {
+          "name": "customer_id",
+          "type": "string",
+          "desc": ""
+        },
+        {
+          "name": "bill_id",
+          "type": "string",
+          "desc": ""
+        }
+      ]
+    },
+    {
+      "id": "toggle_airplane_mode",
+      "desc": "Toggles Airplane Mode ON or OFF. When ON, it disconnects all wireless communications including cellular, Wi-Fi, and Bluetooth.",
+      "parameters": []
+    },
+    {
+      "id": "reboot_device",
+      "desc": "Restarts your phone completely. This can help resolve many temporary software glitches by refreshing all running services and connections.",
+      "parameters": []
+    },
+    {
+      "id": "make_payment",
+      "desc": "Makes a payment for the bill that the agent has sent you.",
+      "parameters": []
+    }
+  ],
+  "links": [
+    {
+      "source": "toggle_data",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data_saver_mode",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "refuel_data",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data_saver_mode",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "set_network_mode_preference",
+      "type": "semantic"
+    },
+    {
+      "source": "refuel_data",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "enable_roaming",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "disconnect_vpn",
+      "type": "semantic"
+    },
+    {
+      "source": "disconnect_vpn",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "toggle_data_saver_mode",
+      "type": "semantic"
+    },
+    {
+      "source": "disconnect_vpn",
+      "target": "toggle_data_saver_mode",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data_saver_mode",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "toggle_data_saver_mode",
+      "type": "semantic"
+    },
+    {
+      "source": "disconnect_vpn",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data",
+      "target": "toggle_data_saver_mode",
+      "type": "semantic"
+    },
+    {
+      "source": "disconnect_vpn",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "disconnect_vpn",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "reseat_sim_card",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "send_payment_request",
+      "type": "semantic"
+    },
+    {
+      "source": "send_payment_request",
+      "target": "make_payment",
+      "type": "semantic"
+    },
+    {
+      "source": "make_payment",
+      "target": "resume_line",
+      "type": "semantic"
+    },
+    {
+      "source": "resume_line",
+      "target": "reboot_device",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "reseat_sim_card",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "reset_apn_settings",
+      "type": "semantic"
+    },
+    {
+      "source": "reset_apn_settings",
+      "target": "reboot_device",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "send_payment_request",
+      "type": "semantic"
+    },
+    {
+      "source": "grant_app_permission",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "grant_app_permission",
+      "type": "semantic"
+    },
+    {
+      "source": "grant_app_permission",
+      "target": "grant_app_permission",
+      "type": "semantic"
+    },
+    {
+      "source": "grant_app_permission",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "grant_app_permission",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_wifi_calling",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_airplane_mode",
+      "target": "toggle_wifi_calling",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_wifi_calling",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "grant_app_permission",
+      "target": "reseat_sim_card",
+      "type": "semantic"
+    },
+    {
+      "source": "reseat_sim_card",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "grant_app_permission",
+      "target": "enable_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "toggle_data",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_wifi_calling",
+      "target": "reset_apn_settings",
+      "type": "semantic"
+    },
+    {
+      "source": "reseat_sim_card",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "grant_app_permission",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "reset_apn_settings",
+      "type": "semantic"
+    },
+    {
+      "source": "reboot_device",
+      "target": "refuel_data",
+      "type": "semantic"
+    },
+    {
+      "source": "refuel_data",
+      "target": "reseat_sim_card",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data",
+      "target": "toggle_roaming",
+      "type": "semantic"
+    },
+    {
+      "source": "set_network_mode_preference",
+      "target": "toggle_wifi_calling",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_wifi_calling",
+      "target": "grant_app_permission",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_data",
+      "target": "reseat_sim_card",
+      "type": "semantic"
+    },
+    {
+      "source": "toggle_wifi_calling",
+      "target": "refuel_data",
+      "type": "semantic"
+    }
+  ]
+}
