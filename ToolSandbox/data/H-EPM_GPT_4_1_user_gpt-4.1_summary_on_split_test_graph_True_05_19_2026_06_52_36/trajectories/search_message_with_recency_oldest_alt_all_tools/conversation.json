@@ -1,0 +1,380 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's the first ever text I have?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_QU0PeWGL0cKemox4461TR1wZ",
+        "function": {
+          "arguments": "{}",
+          "name": "search_messages"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_QU0PeWGL0cKemox4461TR1wZ",
+    "role": "tool",
+    "name": "search_messages",
+    "content": "ValueError: No search criteria are given. At least one search criteria should be provided among ('message_id', 'sender_person_id', 'sender_phone_number', 'recipient_person_id', 'recipient_phone_number', 'content', 'creation_timestamp', 'creation_timestamp')"
+  },
+  {
+    "role": "assistant",
+    "content": "I need at least one search criterion (such as a sender, recipient, content, or time frame) in order to search for your earliest text message. Could you specify a keyword, phone number, or other detail to help me find it? If you want to find the very first message regardless of its content or sender, please let me know how you’d like to proceed."
+  },
+  {
+    "role": "user",
+    "content": "Just look for my very first message ever, doesn’t matter who sent it."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_iePVLccAAlBbniuqlVZ77z1S",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_iePVLccAAlBbniuqlVZ77z1S",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1779175887.713027",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"get_current_timestamp\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_JBUR1vR1Afm5vlahYgvd2HlV",
+        "function": {
+          "arguments": "{\"creation_timestamp_upperbound\": 1779175887.713027}",
+          "name": "search_messages"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_JBUR1vR1Afm5vlahYgvd2HlV",
+    "role": "tool",
+    "name": "search_messages",
+    "content": "[{'message_id': '0d25dbb9-3737-5e0e-b0f0-7c1e359baccc', 'sender_person_id': None, 'sender_phone_number': '+18307976530', 'recipient_person_id': '3815cac9-3cab-5d75-89e2-fe12fe19779e', 'recipient_phone_number': '+11233344455', 'content': 'Hey kid, you want some GPU?', 'creation_timestamp': 1778899640.580712}, {'message_id': 'caaca9e8-7aa9-55a6-9d32-4b4aefed40d1', 'sender_person_id': '3815cac9-3cab-5d75-89e2-fe12fe19779e', 'sender_phone_number': '+11233344455', 'recipient_person_id': None, 'recipient_phone_number': '+18307976530', 'content': 'No leave me alone', 'creation_timestamp': 1778903240.580731}, {'message_id': '0a0102dc-ceaf-5ebb-a665-63da99bf7c47', 'sender_person_id': 'e3570ab6-0819-5032-be1e-2b366390c8ef', 'sender_phone_number': '+10000000000', 'recipient_person_id': '3815cac9-3cab-5d75-89e2-fe12fe19779e', 'recipient_phone_number': '+11233344455', 'content': \"How's it going\", 'creation_timestamp': 1779169763.580746}, {'message_id': '6c9382cb-720e-5f2c-8ac0-77e7ebdea446', 'sender_person_id': '3815cac9-3cab-5d75-89e2-fe12fe19779e', 'sender_phone_number': '+11233344455', 'recipient_person_id': 'e3570ab6-0819-5032-be1e-2b366390c8ef', 'recipient_phone_number': '+10000000000', 'content': 'Things are proceeding as expected', 'creation_timestamp': 1779169823.580759}, {'message_id': '0a0102dc-ceaf-5ebb-a665-63da99bf7c47', 'sender_person_id': 'e3570ab6-0819-5032-be1e-2b366390c8ef', 'sender_phone_number': '+10000000000', 'recipient_person_id': '3815cac9-3cab-5d75-89e2-fe12fe19779e', 'recipient_phone_number': '+11233344455', 'content': 'Good, keep me posted', 'creation_timestamp': 1779173484.580772}]",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 1,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"search_messages\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_jsSiX0pJ0D8B50ho6aiJObwC",
+        "function": {
+          "arguments": "{\"summary\": \"The user wants to know the very first text message they've ever had, regardless of sender or recipient. I searched all messages up to the current time and found several. The one with the earliest creation timestamp is likely the user's first message.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_jsSiX0pJ0D8B50ho6aiJObwC",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user wants to know the very first text message they've ever had, regardless of sender or recipient. I searched all messages up to the current time and found several. The one with the earliest creation timestamp is likely the user's first message.\n\"The user wants to know the very first text message they've ever had, regardless of sender or recipient. I searched all messages up to the current time and found several. The one with the earliest creation timestamp is likely the user's first message.\""
+  },
+  {
+    "role": "assistant",
+    "content": "The very first text message you have is:\n\n\"Hey kid, you want some GPU?\"  \nSent from: +18307976530  \nTo: +11233344455\n\nIf you need more details about this message or information about other early texts, let me know!",
+    "assistant_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 2,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Your first ever text says 'Hey kid, you want some GPU?'."
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Hey kid, you want some GPU?"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_contains_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 0.8356100971039544
+        }
+      ]
+    }
+  }
+]

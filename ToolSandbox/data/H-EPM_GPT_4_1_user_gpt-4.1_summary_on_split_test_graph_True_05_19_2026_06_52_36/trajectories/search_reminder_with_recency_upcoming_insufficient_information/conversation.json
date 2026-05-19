@@ -1,0 +1,162 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's my upcoming reminder",
+    "user_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_upperbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0, \"reminder_timestamp_upperbound\": 0}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_0vBJ1R0rKlVi8mLxiFo7AhZT",
+        "function": {
+          "arguments": "{\"summary\": \"User requested information about their upcoming reminder. Need to determine which reminders exist for the user and identify the one with the nearest future reminder time.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_0vBJ1R0rKlVi8mLxiFo7AhZT",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User requested information about their upcoming reminder. Need to determine which reminders exist for the user and identify the one with the nearest future reminder time.\n'User requested information about their upcoming reminder. Need to determine which reminders exist for the user and identify the one with the nearest future reminder time.'"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_VyLtcKIzRi8v5lGXSjknzBuA",
+        "function": {
+          "arguments": "{}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_VyLtcKIzRi8v5lGXSjknzBuA",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "ValueError: No search criteria are given. At least one search criteria should be provided among ('reminder_id', 'content', 'creation_timestamp', 'creation_timestamp', 'reminder_timestamp', 'reminder_timestamp', 'latitude', 'longitude')"
+  },
+  {
+    "role": "assistant",
+    "content": "I need more information to locate your upcoming reminder. Could you please specify any details about the reminder? For example, is there a keyword (like \"meeting\" or \"doctor\"), or do you remember the approximate time or location associated with it? This will help me search for your upcoming reminder more accurately."
+  },
+  {
+    "role": "user",
+    "content": "I don't remember anything about it—just want to know what it is for today."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_HGPbv77X3Lc1TkCWxXpISwTs",
+        "function": {
+          "arguments": "{\"summary\": \"User wants to know their reminder for today, but does not remember any details. I need to search for reminders with a reminder time falling within today. To do this, I first need to get the current date and time, determine today's start and end timestamps, and search for reminders within that range.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_HGPbv77X3Lc1TkCWxXpISwTs",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User wants to know their reminder for today, but does not remember any details. I need to search for reminders with a reminder time falling within today. To do this, I first need to get the current date and time, determine today's start and end timestamps, and search for reminders within that range.\n\"User wants to know their reminder for today, but does not remember any details. I need to search for reminders with a reminder time falling within today. To do this, I first need to get the current date and time, determine today's start and end timestamps, and search for reminders within that range.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_PKtgtwZHOsI1IvMZwDG6Cn1C",
+        "function": {
+          "arguments": "{\"timestamp\": null}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_PKtgtwZHOsI1IvMZwDG6Cn1C",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "TypeError: Parameter 'timestamp' is of type '<class 'NoneType'>', but expected '<class 'float'>'."
+  },
+  {
+    "role": "assistant",
+    "content": "To find reminders for today, I need to know the current date and time. Could you provide your current time or time zone? This will help me search for reminders specific to today in your location."
+  },
+  {
+    "role": "user",
+    "content": "I actually don't know the current time or my time zone. Can you just use your tools to figure it out?"
+  },
+  {
+    "role": "assistant",
+    "content": "I don't have access to the current time or your time zone automatically, so I can't accurately determine \"today\" without a reference point. To find your reminders for today, I need the current date or time to set the right range.\n\nIf you can provide a time reference (like the date or a recent time), I can continue the search. Otherwise, if you have a device that shows the current date or time, sharing that would let me help you find today's reminders. Would you be able to share that information?"
+  },
+  {
+    "role": "user",
+    "content": "I don't have another device with the time on me right now. Maybe you could try turning on location services to get my time zone?"
+  },
+  {
+    "role": "assistant",
+    "content": "I understand your suggestion, but I don’t have the ability to access or enable location services or automatically detect your time zone. My tools only let me interact with reminder search if I have some criteria, such as time, content, or location—none of which I can access automatically.\n\nTo proceed, if you can recall any approximate detail (even just “morning” or “evening”), a city, or a keyword, I can use those to help search for your reminders. Otherwise, once you can provide any time or location reference, I’ll be able to find your reminders for today quickly. Let me know how you’d like to proceed!"
+  }
+]

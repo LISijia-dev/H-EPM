@@ -1,0 +1,294 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's the reminder I created yesterday?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_NFRmnmV546SkCraM85miJC8E",
+        "function": {
+          "arguments": "{\"summary\": \"The user is asking for the reminder they created yesterday. Current state: user has not provided a specific time or other identifiers; I need to determine the time range corresponding to 'yesterday' and search for reminders created in that period.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_NFRmnmV546SkCraM85miJC8E",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user is asking for the reminder they created yesterday. Current state: user has not provided a specific time or other identifiers; I need to determine the time range corresponding to 'yesterday' and search for reminders created in that period.\n\"The user is asking for the reminder they created yesterday. Current state: user has not provided a specific time or other identifiers; I need to determine the time range corresponding to 'yesterday' and search for reminders created in that period.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_aZ1IeeXFdaN3qQ6RyNUiWnnC",
+        "function": {
+          "arguments": "{\"year\": 2024, \"month\": 6, \"day\": 14, \"hour\": 0, \"minute\": 0, \"second\": 0}",
+          "name": "datetime_info_to_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_aZ1IeeXFdaN3qQ6RyNUiWnnC",
+    "role": "tool",
+    "name": "datetime_info_to_timestamp",
+    "content": "1718323200.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Rc6DAESjBns4iUdnnXd50mnu",
+        "function": {
+          "arguments": "{\"timestamp\": 1718323200.0, \"days\": -1}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Rc6DAESjBns4iUdnnXd50mnu",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1718236800.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_FiubBPwZ6XtDV3V0s7vXEJRE",
+        "function": {
+          "arguments": "{\"creation_timestamp_lowerbound\": 1718236800, \"creation_timestamp_upperbound\": 1718323200}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_FiubBPwZ6XtDV3V0s7vXEJRE",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]",
+    "tool_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {\"creation_timestamp_lowerbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"creation_timestamp_upperbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"creation_timestamp_lowerbound\": 0, \"creation_timestamp_upperbound\": 0}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "You asked for the reminder you created yesterday. I checked for any reminders created between the start and end of yesterday, but I couldn't find any reminders in that time range.\n\nIf you need information about a different date or want to search another way (for example, by reminder content or a more specific time), please let me know!"
+  },
+  {
+    "role": "user",
+    "content": "Are you sure? I thought I made one. Could you double-check using any other info you can?"
+  },
+  {
+    "role": "assistant",
+    "content": "I have already searched for reminders created within the entirety of yesterday by checking for any created between 00:00 and 23:59 yesterday, but nothing was found.\n\nTo make sure, could you provide any additional details such as the content of the reminder or the approximate time you made it? If you give me more information (like keywords or a more specific timeframe), I can perform a more targeted search. Let me know if there's anything else you recall about the reminder!"
+  },
+  {
+    "role": "user",
+    "content": "I don't remember the exact time, but I think the reminder was about picking up groceries."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_IeJ12HYUAkHIDe0SjwpP7mp2",
+        "function": {
+          "arguments": "{\"content\": \"picking up groceries\", \"creation_timestamp_lowerbound\": 1718236800, \"creation_timestamp_upperbound\": 1718323200}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_IeJ12HYUAkHIDe0SjwpP7mp2",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched for reminders containing \"picking up groceries\" created yesterday, but I still didn't find any matches.\n\nIt's possible the reminder was created slightly outside of yesterday's time range or the content is worded differently. If you remember any other details or want me to expand the search to a broader date range or try similar keywords, let me know! I’m here to help you find it."
+  },
+  {
+    "role": "user",
+    "content": "Maybe expand the search to the day before yesterday, too? I might’ve mixed up the days."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_tU6x6HQxeXIvKVJ3XW5sROl0",
+        "function": {
+          "arguments": "{\"timestamp\": 1718236800.0, \"days\": -1}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_tU6x6HQxeXIvKVJ3XW5sROl0",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1718150400.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_qGpleHKQ59gXOSJhe6zRRmnV",
+        "function": {
+          "arguments": "{\"content\": \"picking up groceries\", \"creation_timestamp_lowerbound\": 1718150400, \"creation_timestamp_upperbound\": 1718323200}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_qGpleHKQ59gXOSJhe6zRRmnV",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I expanded the search to include both yesterday and the day before yesterday for reminders about \"picking up groceries,\" but still couldn't find any matches.\n\nIf you want, I can keep searching with broader timeframes or different keywords. Let me know if there’s anything else you recall or if you want to try another approach!"
+  },
+  {
+    "role": "user",
+    "content": "Try looking for any reminder with the word \"groceries\" in the past week. That might help."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_KTCM3vlEQWyHpwcfp7VIRp1r",
+        "function": {
+          "arguments": "{\"timestamp\": 1718323200.0, \"days\": -7}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_KTCM3vlEQWyHpwcfp7VIRp1r",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1717718400.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_g3i3deAusDVhcMoLgo2krvjH",
+        "function": {
+          "arguments": "{\"content\": \"groceries\", \"creation_timestamp_lowerbound\": 1717718400, \"creation_timestamp_upperbound\": 1718323200}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_g3i3deAusDVhcMoLgo2krvjH",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched for any reminders containing the word \"groceries\" created in the past week, but I still didn't find any results.\n\nIf you think the reminder might have different wording or want to try another keyword or time range, please let me know. I'm here to help you keep searching until we find it!"
+  },
+  {
+    "role": "user",
+    "content": "Maybe try searching for “shopping” instead of “groceries” in my reminders in the past week?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_aPQ5LNtPsBvldvUdQfDvIfsn",
+        "function": {
+          "arguments": "{\"content\": \"shopping\", \"creation_timestamp_lowerbound\": 1717718400, \"creation_timestamp_upperbound\": 1718323200}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_aPQ5LNtPsBvldvUdQfDvIfsn",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  }
+]

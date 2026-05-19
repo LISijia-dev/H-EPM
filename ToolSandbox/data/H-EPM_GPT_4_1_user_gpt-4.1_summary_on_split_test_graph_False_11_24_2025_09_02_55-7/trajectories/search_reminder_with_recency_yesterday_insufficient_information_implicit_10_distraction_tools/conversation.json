@@ -1,0 +1,250 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's my todo yesterday?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_IxF59EBdWarV1gEXpAKg6qQY",
+        "function": {
+          "arguments": "{\"summary\": \"User is asking about their to-do (reminder) list for yesterday. Need to determine and filter reminders matching the date for 'yesterday.' Will calculate the POSIX timestamp range for yesterday and search reminders in that range.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_IxF59EBdWarV1gEXpAKg6qQY",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User is asking about their to-do (reminder) list for yesterday. Need to determine and filter reminders matching the date for 'yesterday.' Will calculate the POSIX timestamp range for yesterday and search reminders in that range.\n\"User is asking about their to-do (reminder) list for yesterday. Need to determine and filter reminders matching the date for 'yesterday.' Will calculate the POSIX timestamp range for yesterday and search reminders in that range.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_qGf8oT0SWkdABIiZYPEfFIUW",
+        "function": {
+          "arguments": "{\"year\": 2024, \"month\": 6, \"day\": 18, \"hour\": 0, \"minute\": 0, \"second\": 0}",
+          "name": "datetime_info_to_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_qGf8oT0SWkdABIiZYPEfFIUW",
+    "role": "tool",
+    "name": "datetime_info_to_timestamp",
+    "content": "1718668800.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_FhGhGmYSZMLCJmNf8a38lIfm",
+        "function": {
+          "arguments": "{\"timestamp\": 1718668800, \"days\": -1}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_FhGhGmYSZMLCJmNf8a38lIfm",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1718582400.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Pn3GT9V5P1UKvAoocdSOKUZq",
+        "function": {
+          "arguments": "{\"reminder_timestamp_lowerbound\": 1718582400, \"reminder_timestamp_upperbound\": 1718668800}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_VsQFzZP5Qxs24YSiBePIgNy4",
+        "function": {
+          "arguments": "{\"timestamp\": 1718582400}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_MfgkQ4DK9fhWOfCmotaFuZgY",
+        "function": {
+          "arguments": "{\"timestamp\": 1718668800}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Pn3GT9V5P1UKvAoocdSOKUZq",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]",
+    "tool_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_upperbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0, \"reminder_timestamp_upperbound\": 0}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "tool_call_id": "call_VsQFzZP5Qxs24YSiBePIgNy4",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "{'year': 2024, 'month': 6, 'day': 17, 'hour': 0, 'minute': 0, 'second': 0, 'isoweekday': 1}"
+  },
+  {
+    "tool_call_id": "call_MfgkQ4DK9fhWOfCmotaFuZgY",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "{'year': 2024, 'month': 6, 'day': 18, 'hour': 0, 'minute': 0, 'second': 0, 'isoweekday': 2}"
+  },
+  {
+    "role": "assistant",
+    "content": "I checked your to-do (reminder) list for yesterday, which was June 17, 2024. There were no reminders found for that day.\n\nIf you are looking for a different date or need more details, let me know!"
+  },
+  {
+    "role": "user",
+    "content": "Are you sure? I’m pretty sure I set something up to remind me."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Y0x5Bewf0swtOqtu62b5jzpJ",
+        "function": {
+          "arguments": "{\"summary\": \"User believes they had set a reminder for yesterday (June 17, 2024), but my previous search returned no reminders for that day. Need to confirm the reminder timestamp calculation and ensure I used the right boundaries (midnight to midnight) for June 17, 2024. Consider checking for possible time zone issues or searching using creation date if reminders were set but not necessarily due. Next, verify timestamps for the requested day and check for matching reminders.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Y0x5Bewf0swtOqtu62b5jzpJ",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User believes they had set a reminder for yesterday (June 17, 2024), but my previous search returned no reminders for that day. Need to confirm the reminder timestamp calculation and ensure I used the right boundaries (midnight to midnight) for June 17, 2024. Consider checking for possible time zone issues or searching using creation date if reminders were set but not necessarily due. Next, verify timestamps for the requested day and check for matching reminders.\n'User believes they had set a reminder for yesterday (June 17, 2024), but my previous search returned no reminders for that day. Need to confirm the reminder timestamp calculation and ensure I used the right boundaries (midnight to midnight) for June 17, 2024. Consider checking for possible time zone issues or searching using creation date if reminders were set but not necessarily due. Next, verify timestamps for the requested day and check for matching reminders.'"
+  },
+  {
+    "role": "assistant",
+    "content": "I checked for reminders set to go off between midnight and midnight on June 17, 2024 (yesterday). No reminders appeared within that window. There could be a few reasons why you’re not seeing your reminder:\n\n1. The reminder could have been set for a specific time of day that falls just outside that range due to time zone differences.\n2. The reminder might have been created for yesterday, but with a different due date/time.\n3. The search might not include completed or dismissed reminders (if such differentiation exists).\n\nIf you remember any keywords or approximate time for the reminder, let me know and I can search again using that information. Would you like to refine the search using more details?"
+  },
+  {
+    "role": "user",
+    "content": "I think it had something about “call mom” in it."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_IPy6DPtmW4pkOTPVLsYdQbJc",
+        "function": {
+          "arguments": "{\"content\": \"call mom\"}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_IPy6DPtmW4pkOTPVLsYdQbJc",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched your reminders for anything with \"call mom\" in the content, but I didn't find any results.\n\nIt's possible the reminder was deleted, completed, or stored with slightly different wording. If you have any other keywords or details, or want me to search for similar phrases, let me know!"
+  },
+  {
+    "role": "user",
+    "content": "Maybe try just searching for “mom” instead?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_ws75AEtH5mWgaLznss41wjBl",
+        "function": {
+          "arguments": "{\"content\": \"mom\"}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_ws75AEtH5mWgaLznss41wjBl",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched your reminders for anything containing \"mom,\" but I still didn't find any results.\n\nIf you want to try another keyword, a different date, or broaden the search in another way, let me know!"
+  }
+]

@@ -120,7 +120,7 @@ def run_domain(config: RunConfig) -> Results:
     save_to = config.save_to
     if save_to is None:
         # save_to = make_run_name(config)+"_2choosetool_summary_graph_noautosum_back920"
-        save_to = 'newllm_judge'+make_run_name(config)
+        save_to = 'H-EPM_' + make_run_name(config)
     save_to = DATA_DIR / "simulations" / f"{save_to}.json"
     simulation_results = run_tasks(
         domain=config.domain,

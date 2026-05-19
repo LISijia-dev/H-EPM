@@ -1,0 +1,826 @@
+Note that User Simulator few shot messages have been omitted
+shape: (15, 9)
++------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------+
+| sandbox_me | sender     | recipient  | content    | openai_fun | tool_call | tool_trac | visible_t | entropy_d |
+| ssage_inde | ---        | ---        | ---        | ction_name | _exceptio | e         | o         | ata       |
+| x          | enum       | enum       | str        | ---        | n         | ---       | ---       | ---       |
+| ---        |            |            |            | str        | ---       | list[str] | list[enum | str       |
+| i32        |            |            |            |            | str       |           | ]         |           |
++================================================================================================================+
+| 0          | SYSTEM     | EXECUTION_ | import     | null       | null      | null      | null      | null      |
+|            |            | ENVIRONMEN | json       |            |           |           |           |           |
+|            |            | T          | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.contac |            |           |           |           |           |
+|            |            |            | t import   |            |           |           |           |           |
+|            |            |            | add_contac |            |           |           |           |           |
+|            |            |            | t, modify_ |            |           |           |           |           |
+|            |            |            | contact,   |            |           |           |           |           |
+|            |            |            | remove_con |            |           |           |           |           |
+|            |            |            | tact, sear |            |           |           |           |           |
+|            |            |            | ch_contact |            |           |           |           |           |
+|            |            |            | s          |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.settin |            |           |           |           |           |
+|            |            |            | g import   |            |           |           |           |           |
+|            |            |            | get_cellul |            |           |           |           |           |
+|            |            |            | ar_service |            |           |           |           |           |
+|            |            |            | _status,   |            |           |           |           |           |
+|            |            |            | get_curren |            |           |           |           |           |
+|            |            |            | t_location |            |           |           |           |           |
+|            |            |            | , get_loca |            |           |           |           |           |
+|            |            |            | tion_servi |            |           |           |           |           |
+|            |            |            | ce_status, |            |           |           |           |           |
+|            |            |            | get_wifi_s |            |           |           |           |           |
+|            |            |            | tatus, get |            |           |           |           |           |
+|            |            |            | _low_batte |            |           |           |           |           |
+|            |            |            | ry_mode_st |            |           |           |           |           |
+|            |            |            | atus, set_ |            |           |           |           |           |
+|            |            |            | cellular_s |            |           |           |           |           |
+|            |            |            | ervice_sta |            |           |           |           |           |
+|            |            |            | tus, set_l |            |           |           |           |           |
+|            |            |            | ocation_se |            |           |           |           |           |
+|            |            |            | rvice_stat |            |           |           |           |           |
+|            |            |            | us, set_lo |            |           |           |           |           |
+|            |            |            | w_battery_ |            |           |           |           |           |
+|            |            |            | mode_statu |            |           |           |           |           |
+|            |            |            | s, set_wif |            |           |           |           |           |
+|            |            |            | i_status   |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.messag |            |           |           |           |           |
+|            |            |            | ing import |            |           |           |           |           |
+|            |            |            | search_mes |            |           |           |           |           |
+|            |            |            | sages, sen |            |           |           |           |           |
+|            |            |            | d_message_ |            |           |           |           |           |
+|            |            |            | with_phone |            |           |           |           |           |
+|            |            |            | _number    |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.rapid_ |            |           |           |           |           |
+|            |            |            | api_search |            |           |           |           |           |
+|            |            |            | _tools     |            |           |           |           |           |
+|            |            |            | import con |            |           |           |           |           |
+|            |            |            | vert_curre |            |           |           |           |           |
+|            |            |            | ncy, searc |            |           |           |           |           |
+|            |            |            | h_lat_lon, |            |           |           |           |           |
+|            |            |            | search_loc |            |           |           |           |           |
+|            |            |            | ation_arou |            |           |           |           |           |
+|            |            |            | nd_lat_lon |            |           |           |           |           |
+|            |            |            | , search_s |            |           |           |           |           |
+|            |            |            | tock, sear |            |           |           |           |           |
+|            |            |            | ch_weather |            |           |           |           |           |
+|            |            |            | _around_la |            |           |           |           |           |
+|            |            |            | t_lon      |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.remind |            |           |           |           |           |
+|            |            |            | er import  |            |           |           |           |           |
+|            |            |            | add_remind |            |           |           |           |           |
+|            |            |            | er, modify |            |           |           |           |           |
+|            |            |            | _reminder, |            |           |           |           |           |
+|            |            |            | remove_rem |            |           |           |           |           |
+|            |            |            | inder, sea |            |           |           |           |           |
+|            |            |            | rch_remind |            |           |           |           |           |
+|            |            |            | er         |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.summar |            |           |           |           |           |
+|            |            |            | ize import |            |           |           |           |           |
+|            |            |            | summarize_ |            |           |           |           |           |
+|            |            |            | the_task   |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.user_t |            |           |           |           |           |
+|            |            |            | ools       |            |           |           |           |           |
+|            |            |            | import end |            |           |           |           |           |
+|            |            |            | _conversat |            |           |           |           |           |
+|            |            |            | ion        |            |           |           |           |           |
+|            |            |            | from tool_ |            |           |           |           |           |
+|            |            |            | sandbox.to |            |           |           |           |           |
+|            |            |            | ols.utilit |            |           |           |           |           |
+|            |            |            | ies import |            |           |           |           |           |
+|            |            |            | calculate_ |            |           |           |           |           |
+|            |            |            | lat_lon_di |            |           |           |           |           |
+|            |            |            | stance,    |            |           |           |           |           |
+|            |            |            | datetime_i |            |           |           |           |           |
+|            |            |            | nfo_to_tim |            |           |           |           |           |
+|            |            |            | estamp,    |            |           |           |           |           |
+|            |            |            | get_curren |            |           |           |           |           |
+|            |            |            | t_timestam |            |           |           |           |           |
+|            |            |            | p, search_ |            |           |           |           |           |
+|            |            |            | holiday,   |            |           |           |           |           |
+|            |            |            | seconds_to |            |           |           |           |           |
+|            |            |            | _hours_min |            |           |           |           |           |
+|            |            |            | utes_secon |            |           |           |           |           |
+|            |            |            | ds, shift_ |            |           |           |           |           |
+|            |            |            | timestamp, |            |           |           |           |           |
+|            |            |            | timestamp_ |            |           |           |           |           |
+|            |            |            | diff, time |            |           |           |           |           |
+|            |            |            | stamp_to_d |            |           |           |           |           |
+|            |            |            | atetime_in |            |           |           |           |           |
+|            |            |            | fo, unit_c |            |           |           |           |           |
+|            |            |            | onversion  |            |           |           |           |           |
+|            |            |            |            |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 1          | SYSTEM     | AGENT      | Don't make | null       | null      | null      | null      | null      |
+|            |            |            | assumption |            |           |           |           |           |
+|            |            |            | s about    |            |           |           |           |           |
+|            |            |            | what       |            |           |           |           |           |
+|            |            |            | values to  |            |           |           |           |           |
+|            |            |            | plug into  |            |           |           |           |           |
+|            |            |            | functions. |            |           |           |           |           |
+|            |            |            | Ask for    |            |           |           |           |           |
+|            |            |            | clarificat |            |           |           |           |           |
+|            |            |            | ion if a   |            |           |           |           |           |
+|            |            |            | user       |            |           |           |           |           |
+|            |            |            | request is |            |           |           |           |           |
+|            |            |            | ambiguous. |            |           |           |           |           |
+|            |            |            | IMPORTANT: |            |           |           |           |           |
+|            |            |            | You MUST   |            |           |           |           |           |
+|            |            |            | call the   |            |           |           |           |           |
+|            |            |            | `summarize |            |           |           |           |           |
+|            |            |            | _the_task` |            |           |           |           |           |
+|            |            |            | tool at    |            |           |           |           |           |
+|            |            |            | least once |            |           |           |           |           |
+|            |            |            | during the |            |           |           |           |           |
+|            |            |            | conversati |            |           |           |           |           |
+|            |            |            | on to help |            |           |           |           |           |
+|            |            |            | you make   |            |           |           |           |           |
+|            |            |            | decisions  |            |           |           |           |           |
+|            |            |            | about      |            |           |           |           |           |
+|            |            |            | actions.   |            |           |           |           |           |
+|            |            |            | This is a  |            |           |           |           |           |
+|            |            |            | required   |            |           |           |           |           |
+|            |            |            | step in    |            |           |           |           |           |
+|            |            |            | your       |            |           |           |           |           |
+|            |            |            | workflow.  |            |           |           |           |           |
+|            |            |            | The        |            |           |           |           |           |
+|            |            |            | content of |            |           |           |           |           |
+|            |            |            | summary    |            |           |           |           |           |
+|            |            |            | is:        |            |           |           |           |           |
+|            |            |            | Summary of |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | current    |            |           |           |           |           |
+|            |            |            | state,     |            |           |           |           |           |
+|            |            |            | including  |            |           |           |           |           |
+|            |            |            | environmen |            |           |           |           |           |
+|            |            |            | t and user |            |           |           |           |           |
+|            |            |            | info.You   |            |           |           |           |           |
+|            |            |            | should     |            |           |           |           |           |
+|            |            |            | decide     |            |           |           |           |           |
+|            |            |            | when to    |            |           |           |           |           |
+|            |            |            | summarize  |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | current    |            |           |           |           |           |
+|            |            |            | state and  |            |           |           |           |           |
+|            |            |            | informatio |            |           |           |           |           |
+|            |            |            | n of the   |            |           |           |           |           |
+|            |            |            | task with  |            |           |           |           |           |
+|            |            |            | the `summa |            |           |           |           |           |
+|            |            |            | rize_the_t |            |           |           |           |           |
+|            |            |            | ask` tool  |            |           |           |           |           |
+|            |            |            | and call   |            |           |           |           |           |
+|            |            |            | `summarize |            |           |           |           |           |
+|            |            |            | _the_task` |            |           |           |           |           |
+|            |            |            | at least   |            |           |           |           |           |
+|            |            |            | once in    |            |           |           |           |           |
+|            |            |            | the conver |            |           |           |           |           |
+|            |            |            | sation to  |            |           |           |           |           |
+|            |            |            | help you   |            |           |           |           |           |
+|            |            |            | make       |            |           |           |           |           |
+|            |            |            | decisions  |            |           |           |           |           |
+|            |            |            | about      |            |           |           |           |           |
+|            |            |            | action.    |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 20         | SYSTEM     | USER       | You are no | null       | null      | null      | null      | null      |
+|            |            |            | longer an  |            |           |           |           |           |
+|            |            |            | assistant. |            |           |           |           |           |
+|            |            |            | From now   |            |           |           |           |           |
+|            |            |            | on role    |            |           |           |           |           |
+|            |            |            | play as a  |            |           |           |           |           |
+|            |            |            | user (User |            |           |           |           |           |
+|            |            |            | A) talking |            |           |           |           |           |
+|            |            |            | to another |            |           |           |           |           |
+|            |            |            | user (User |            |           |           |           |           |
+|            |            |            | B).        |            |           |           |           |           |
+|            |            |            | Make sure  |            |           |           |           |           |
+|            |            |            | you follow |            |           |           |           |           |
+|            |            |            | these inst |            |           |           |           |           |
+|            |            |            | ructions:  |            |           |           |           |           |
+|            |            |            |            |            |           |           |           |           |
+|            |            |            | 0. DO NOT  |            |           |           |           |           |
+|            |            |            | act as if  |            |           |           |           |           |
+|            |            |            | you (User  |            |           |           |           |           |
+|            |            |            | A) are an  |            |           |           |           |           |
+|            |            |            | assistant. |            |           |           |           |           |
+|            |            |            | ALWAYS     |            |           |           |           |           |
+|            |            |            | treat      |            |           |           |           |           |
+|            |            |            | yourself   |            |           |           |           |           |
+|            |            |            | as a user  |            |           |           |           |           |
+|            |            |            | (User A).  |            |           |           |           |           |
+|            |            |            | Do not ask |            |           |           |           |           |
+|            |            |            | questions  |            |           |           |           |           |
+|            |            |            | to the     |            |           |           |           |           |
+|            |            |            | other user |            |           |           |           |           |
+|            |            |            | (User B).  |            |           |           |           |           |
+|            |            |            | 1. Answer  |            |           |           |           |           |
+|            |            |            | any        |            |           |           |           |           |
+|            |            |            | question   |            |           |           |           |           |
+|            |            |            | User B     |            |           |           |           |           |
+|            |            |            | asks you   |            |           |           |           |           |
+|            |            |            | (User A)   |            |           |           |           |           |
+|            |            |            | accurately |            |           |           |           |           |
+|            |            |            | . Use only |            |           |           |           |           |
+|            |            |            | the inform |            |           |           |           |           |
+|            |            |            | ation      |            |           |           |           |           |
+|            |            |            | provided.  |            |           |           |           |           |
+|            |            |            | Do not     |            |           |           |           |           |
+|            |            |            | make up    |            |           |           |           |           |
+|            |            |            | false info |            |           |           |           |           |
+|            |            |            | rmation.   |            |           |           |           |           |
+|            |            |            | 2.  Use    |            |           |           |           |           |
+|            |            |            | natural,   |            |           |           |           |           |
+|            |            |            | short,     |            |           |           |           |           |
+|            |            |            | casual     |            |           |           |           |           |
+|            |            |            | language.  |            |           |           |           |           |
+|            |            |            | 3.  If     |            |           |           |           |           |
+|            |            |            | User B     |            |           |           |           |           |
+|            |            |            | says it    |            |           |           |           |           |
+|            |            |            | could not  |            |           |           |           |           |
+|            |            |            | complete   |            |           |           |           |           |
+|            |            |            | the task,  |            |           |           |           |           |
+|            |            |            | either     |            |           |           |           |           |
+|            |            |            | provide    |            |           |           |           |           |
+|            |            |            | more infor |            |           |           |           |           |
+|            |            |            | mation     |            |           |           |           |           |
+|            |            |            | you (User  |            |           |           |           |           |
+|            |            |            | A) posses, |            |           |           |           |           |
+|            |            |            | or ask it  |            |           |           |           |           |
+|            |            |            | to use the |            |           |           |           |           |
+|            |            |            | tools it   |            |           |           |           |           |
+|            |            |            | figure it  |            |           |           |           |           |
+|            |            |            | out itself |            |           |           |           |           |
+|            |            |            | if you     |            |           |           |           |           |
+|            |            |            | (User A)   |            |           |           |           |           |
+|            |            |            | do not     |            |           |           |           |           |
+|            |            |            | posses inf |            |           |           |           |           |
+|            |            |            | ormation   |            |           |           |           |           |
+|            |            |            | that could |            |           |           |           |           |
+|            |            |            | help.      |            |           |           |           |           |
+|            |            |            | 4.  Allow  |            |           |           |           |           |
+|            |            |            | User B to  |            |           |           |           |           |
+|            |            |            | turn off   |            |           |           |           |           |
+|            |            |            | low        |            |           |           |           |           |
+|            |            |            | battery    |            |           |           |           |           |
+|            |            |            | mode, turn |            |           |           |           |           |
+|            |            |            | on         |            |           |           |           |           |
+|            |            |            | cellular   |            |           |           |           |           |
+|            |            |            | service,   |            |           |           |           |           |
+|            |            |            | wifi or    |            |           |           |           |           |
+|            |            |            | location   |            |           |           |           |           |
+|            |            |            | service    |            |           |           |           |           |
+|            |            |            | in order   |            |           |           |           |           |
+|            |            |            | to         |            |           |           |           |           |
+|            |            |            | complete   |            |           |           |           |           |
+|            |            |            | the task.  |            |           |           |           |           |
+|            |            |            | 5.  When   |            |           |           |           |           |
+|            |            |            | User B     |            |           |           |           |           |
+|            |            |            | completed  |            |           |           |           |           |
+|            |            |            | the task,  |            |           |           |           |           |
+|            |            |            | even if    |            |           |           |           |           |
+|            |            |            | you (User  |            |           |           |           |           |
+|            |            |            | A) don't   |            |           |           |           |           |
+|            |            |            | have       |            |           |           |           |           |
+|            |            |            | enough inf |            |           |           |           |           |
+|            |            |            | ormation   |            |           |           |           |           |
+|            |            |            | to         |            |           |           |           |           |
+|            |            |            | validate   |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | correctnes |            |           |           |           |           |
+|            |            |            | s, break   |            |           |           |           |           |
+|            |            |            | out of     |            |           |           |           |           |
+|            |            |            | role       |            |           |           |           |           |
+|            |            |            | playing    |            |           |           |           |           |
+|            |            |            | and use    |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | provided   |            |           |           |           |           |
+|            |            |            | tool named |            |           |           |           |           |
+|            |            |            | `end_conve |            |           |           |           |           |
+|            |            |            | rsation`   |            |           |           |           |           |
+|            |            |            | to stop    |            |           |           |           |           |
+|            |            |            | the conver |            |           |           |           |           |
+|            |            |            | sation.    |            |           |           |           |           |
+|            |            |            | 6.  When   |            |           |           |           |           |
+|            |            |            | User B     |            |           |           |           |           |
+|            |            |            | cannot     |            |           |           |           |           |
+|            |            |            | complete   |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | request    |            |           |           |           |           |
+|            |            |            | after 5    |            |           |           |           |           |
+|            |            |            | tries,     |            |           |           |           |           |
+|            |            |            | break out  |            |           |           |           |           |
+|            |            |            | of role    |            |           |           |           |           |
+|            |            |            | playing    |            |           |           |           |           |
+|            |            |            | and        |            |           |           |           |           |
+|            |            |            | use the    |            |           |           |           |           |
+|            |            |            | provided   |            |           |           |           |           |
+|            |            |            | tool named |            |           |           |           |           |
+|            |            |            | `end_conve |            |           |           |           |           |
+|            |            |            | rsation`   |            |           |           |           |           |
+|            |            |            | to stop    |            |           |           |           |           |
+|            |            |            | the conver |            |           |           |           |           |
+|            |            |            | sation.    |            |           |           |           |           |
+|            |            |            |            |            |           |           |           |           |
+|            |            |            | Answer     |            |           |           |           |           |
+|            |            |            | User B's   |            |           |           |           |           |
+|            |            |            | questions  |            |           |           |           |           |
+|            |            |            | given the  |            |           |           |           |           |
+|            |            |            | following  |            |           |           |           |           |
+|            |            |            | task you   |            |           |           |           |           |
+|            |            |            | (User A)   |            |           |           |           |           |
+|            |            |            | want User  |            |           |           |           |           |
+|            |            |            | B to       |            |           |           |           |           |
+|            |            |            | complete:  |            |           |           |           |           |
+|            |            |            | Find the   |            |           |           |           |           |
+|            |            |            | content of |            |           |           |           |           |
+|            |            |            | your (User |            |           |           |           |           |
+|            |            |            | A's)       |            |           |           |           |           |
+|            |            |            | oldest     |            |           |           |           |           |
+|            |            |            | message.   |            |           |           |           |           |
+|            |            |            | You do not |            |           |           |           |           |
+|            |            |            | have more  |            |           |           |           |           |
+|            |            |            | informatio |            |           |           |           |           |
+|            |            |            | n.         |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 21         | USER       | AGENT      | I wanna    | null       | null      | null      | null      | null      |
+|            |            |            | find a     |            |           |           |           |           |
+|            |            |            | message    |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 22         | AGENT      | EXECUTION_ | call_HbCgj | summarize_ | null      | null      | ["AGENT", | null      |
+|            |            | ENVIRONMEN | lHDadcoLdQ | the_task   |           |           | "EXECUTIO |           |
+|            |            | T          | mej4QvW8b_ |            |           |           | N_ENVIRON |           |
+|            |            |            | parameters |            |           |           | MENT"]    |           |
+|            |            |            | = {'summar |            |           |           |           |           |
+|            |            |            | y': 'User  |            |           |           |           |           |
+|            |            |            | has        |            |           |           |           |           |
+|            |            |            | requested  |            |           |           |           |           |
+|            |            |            | to find a  |            |           |           |           |           |
+|            |            |            | message    |            |           |           |           |           |
+|            |            |            | but did    |            |           |           |           |           |
+|            |            |            | not        |            |           |           |           |           |
+|            |            |            | specify    |            |           |           |           |           |
+|            |            |            | search     |            |           |           |           |           |
+|            |            |            | criteria   |            |           |           |           |           |
+|            |            |            | such as    |            |           |           |           |           |
+|            |            |            | sender,    |            |           |           |           |           |
+|            |            |            | recipient, |            |           |           |           |           |
+|            |            |            | content,   |            |           |           |           |           |
+|            |            |            | or time.   |            |           |           |           |           |
+|            |            |            | Clarificat |            |           |           |           |           |
+|            |            |            | ion is     |            |           |           |           |           |
+|            |            |            | needed to  |            |           |           |           |           |
+|            |            |            | proceed    |            |           |           |           |           |
+|            |            |            | effectivel |            |           |           |           |           |
+|            |            |            | y.'}       |            |           |           |           |           |
+|            |            |            | call_HbCgj |            |           |           |           |           |
+|            |            |            | lHDadcoLdQ |            |           |           |           |           |
+|            |            |            | mej4QvW8b_ |            |           |           |           |           |
+|            |            |            | response = |            |           |           |           |           |
+|            |            |            | summarize_ |            |           |           |           |           |
+|            |            |            | the_task(* |            |           |           |           |           |
+|            |            |            | *call_HbCg |            |           |           |           |           |
+|            |            |            | jlHDadcoLd |            |           |           |           |           |
+|            |            |            | Qmej4QvW8b |            |           |           |           |           |
+|            |            |            | _parameter |            |           |           |           |           |
+|            |            |            | s)         |            |           |           |           |           |
+|            |            |            | print(repr |            |           |           |           |           |
+|            |            |            | (call_HbCg |            |           |           |           |           |
+|            |            |            | jlHDadcoLd |            |           |           |           |           |
+|            |            |            | Qmej4QvW8b |            |           |           |           |           |
+|            |            |            | _response) |            |           |           |           |           |
+|            |            |            | )          |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 23         | EXECUTION_ | AGENT      | [SummaryTo | summarize_ | null      | ["{"tool_ | ["EXECUTI | null      |
+|            | ENVIRONMEN |            | ol] User   | the_task   |           | name":    | ON_ENVIRO |           |
+|            | T          |            | has        |            |           | "summariz | NMENT",   |           |
+|            |            |            | requested  |            |           | e_the_tas | "AGENT"]  |           |
+|            |            |            | to find a  |            |           | k", "argu |           |           |
+|            |            |            | message    |            |           | ments":   |           |           |
+|            |            |            | but did    |            |           | {"summary |           |           |
+|            |            |            | not        |            |           | ": "User  |           |           |
+|            |            |            | specify    |            |           | has       |           |           |
+|            |            |            | search     |            |           | requested |           |           |
+|            |            |            | criteria   |            |           | to find a |           |           |
+|            |            |            | such as    |            |           | message   |           |           |
+|            |            |            | sender,    |            |           | but did   |           |           |
+|            |            |            | recipient, |            |           | not       |           |           |
+|            |            |            | content,   |            |           | specify   |           |           |
+|            |            |            | or time.   |            |           | search    |           |           |
+|            |            |            | Clarificat |            |           | criteria  |           |           |
+|            |            |            | ion is     |            |           | such as   |           |           |
+|            |            |            | needed to  |            |           | sender,   |           |           |
+|            |            |            | proceed    |            |           | recipient |           |           |
+|            |            |            | effectivel |            |           | ,         |           |           |
+|            |            |            | y.         |            |           | content,  |           |           |
+|            |            |            | 'User has  |            |           | or time.  |           |           |
+|            |            |            | requested  |            |           | Clarifica |           |           |
+|            |            |            | to find a  |            |           | tion is   |           |           |
+|            |            |            | message    |            |           | needed to |           |           |
+|            |            |            | but did    |            |           | proceed   |           |           |
+|            |            |            | not        |            |           | effective |           |           |
+|            |            |            | specify    |            |           | ly."},    |           |           |
+|            |            |            | search     |            |           | "result": |           |           |
+|            |            |            | criteria   |            |           | "User has |           |           |
+|            |            |            | such as    |            |           | requested |           |           |
+|            |            |            | sender,    |            |           | to find a |           |           |
+|            |            |            | recipient, |            |           | message   |           |           |
+|            |            |            | content,   |            |           | but did   |           |           |
+|            |            |            | or time.   |            |           | not       |           |           |
+|            |            |            | Clarificat |            |           | specify   |           |           |
+|            |            |            | ion is     |            |           | search    |           |           |
+|            |            |            | needed to  |            |           | criteria  |           |           |
+|            |            |            | proceed    |            |           | such as   |           |           |
+|            |            |            | effectivel |            |           | sender,   |           |           |
+|            |            |            | y.'        |            |           | recipient |           |           |
+|            |            |            |            |            |           | ,         |           |           |
+|            |            |            |            |            |           | content,  |           |           |
+|            |            |            |            |            |           | or time.  |           |           |
+|            |            |            |            |            |           | Clarifica |           |           |
+|            |            |            |            |            |           | tion is   |           |           |
+|            |            |            |            |            |           | needed to |           |           |
+|            |            |            |            |            |           | proceed   |           |           |
+|            |            |            |            |            |           | effective |           |           |
+|            |            |            |            |            |           | ly."}"]   |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 24         | AGENT      | USER       | You        | null       | null      | null      | ["AGENT", | null      |
+|            |            |            | mentioned  |            |           |           | "USER"]   |           |
+|            |            |            | you want   |            |           |           |           |           |
+|            |            |            | to find a  |            |           |           |           |           |
+|            |            |            | message.   |            |           |           |           |           |
+|            |            |            | Could you  |            |           |           |           |           |
+|            |            |            | please     |            |           |           |           |           |
+|            |            |            | provide    |            |           |           |           |           |
+|            |            |            | more       |            |           |           |           |           |
+|            |            |            | details to |            |           |           |           |           |
+|            |            |            | help       |            |           |           |           |           |
+|            |            |            | narrow     |            |           |           |           |           |
+|            |            |            | down the   |            |           |           |           |           |
+|            |            |            | search?    |            |           |           |           |           |
+|            |            |            | For        |            |           |           |           |           |
+|            |            |            | example:   |            |           |           |           |           |
+|            |            |            | - Who sent |            |           |           |           |           |
+|            |            |            | or         |            |           |           |           |           |
+|            |            |            | received   |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | message?   |            |           |           |           |           |
+|            |            |            | - What     |            |           |           |           |           |
+|            |            |            | keywords   |            |           |           |           |           |
+|            |            |            | or phrases |            |           |           |           |           |
+|            |            |            | are in the |            |           |           |           |           |
+|            |            |            | message    |            |           |           |           |           |
+|            |            |            | content?   |            |           |           |           |           |
+|            |            |            | - Around   |            |           |           |           |           |
+|            |            |            | what date  |            |           |           |           |           |
+|            |            |            | or time    |            |           |           |           |           |
+|            |            |            | was the    |            |           |           |           |           |
+|            |            |            | message    |            |           |           |           |           |
+|            |            |            | sent?      |            |           |           |           |           |
+|            |            |            | Any of     |            |           |           |           |           |
+|            |            |            | these      |            |           |           |           |           |
+|            |            |            | details    |            |           |           |           |           |
+|            |            |            | will help  |            |           |           |           |           |
+|            |            |            | me locate  |            |           |           |           |           |
+|            |            |            | the        |            |           |           |           |           |
+|            |            |            | message    |            |           |           |           |           |
+|            |            |            | for you.   |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 25         | USER       | AGENT      | I just     | null       | null      | null      | ["USER",  | null      |
+|            |            |            | want the   |            |           |           | "AGENT"]  |           |
+|            |            |            | oldest     |            |           |           |           |           |
+|            |            |            | message I  |            |           |           |           |           |
+|            |            |            | have.      |            |           |           |           |           |
+|            |            |            | That's all |            |           |           |           |           |
+|            |            |            | I know.    |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 26         | AGENT      | EXECUTION_ | call_hnU5a | get_curren | null      | null      | ["AGENT", | null      |
+|            |            | ENVIRONMEN | navwTM8WM2 | t_timestam |           |           | "EXECUTIO |           |
+|            |            | T          | kwb5lHwwz_ | p          |           |           | N_ENVIRON |           |
+|            |            |            | parameters |            |           |           | MENT"]    |           |
+|            |            |            | = {}       |            |           |           |           |           |
+|            |            |            | call_hnU5a |            |           |           |           |           |
+|            |            |            | navwTM8WM2 |            |           |           |           |           |
+|            |            |            | kwb5lHwwz_ |            |           |           |           |           |
+|            |            |            | response = |            |           |           |           |           |
+|            |            |            | get_curren |            |           |           |           |           |
+|            |            |            | t_timestam |            |           |           |           |           |
+|            |            |            | p(**call_h |            |           |           |           |           |
+|            |            |            | nU5anavwTM |            |           |           |           |           |
+|            |            |            | 8WM2kwb5lH |            |           |           |           |           |
+|            |            |            | wwz_parame |            |           |           |           |           |
+|            |            |            | ters)      |            |           |           |           |           |
+|            |            |            | print(repr |            |           |           |           |           |
+|            |            |            | (call_hnU5 |            |           |           |           |           |
+|            |            |            | anavwTM8WM |            |           |           |           |           |
+|            |            |            | 2kwb5lHwwz |            |           |           |           |           |
+|            |            |            | _response) |            |           |           |           |           |
+|            |            |            | )          |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 27         | EXECUTION_ | AGENT      | 1763980432 | get_curren | null      | ["{"tool_ | ["EXECUTI | null      |
+|            | ENVIRONMEN |            | .519976    | t_timestam |           | name":    | ON_ENVIRO |           |
+|            | T          |            |            | p          |           | "get_curr | NMENT",   |           |
+|            |            |            |            |            |           | ent_times | "AGENT"]  |           |
+|            |            |            |            |            |           | tamp",    |           |           |
+|            |            |            |            |            |           | "argument |           |           |
+|            |            |            |            |            |           | s": {},   |           |           |
+|            |            |            |            |            |           | "result": |           |           |
+|            |            |            |            |            |           | 176398043 |           |           |
+|            |            |            |            |            |           | 2.519976} |           |           |
+|            |            |            |            |            |           | "]        |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 28         | AGENT      | EXECUTION_ | call_wdzeH | search_mes | null      | null      | ["AGENT", | null      |
+|            |            | ENVIRONMEN | WNvFxHexJi | sages      |           |           | "EXECUTIO |           |
+|            |            | T          | P1RAi3ylS_ |            |           |           | N_ENVIRON |           |
+|            |            |            | parameters |            |           |           | MENT"]    |           |
+|            |            |            | = {'creati |            |           |           |           |           |
+|            |            |            | on_timesta |            |           |           |           |           |
+|            |            |            | mp_upperbo |            |           |           |           |           |
+|            |            |            | und': 1763 |            |           |           |           |           |
+|            |            |            | 980432.519 |            |           |           |           |           |
+|            |            |            | 976}       |            |           |           |           |           |
+|            |            |            | call_wdzeH |            |           |           |           |           |
+|            |            |            | WNvFxHexJi |            |           |           |           |           |
+|            |            |            | P1RAi3ylS_ |            |           |           |           |           |
+|            |            |            | response = |            |           |           |           |           |
+|            |            |            | search_mes |            |           |           |           |           |
+|            |            |            | sages(**ca |            |           |           |           |           |
+|            |            |            | ll_wdzeHWN |            |           |           |           |           |
+|            |            |            | vFxHexJiP1 |            |           |           |           |           |
+|            |            |            | RAi3ylS_pa |            |           |           |           |           |
+|            |            |            | rameters)  |            |           |           |           |           |
+|            |            |            | print(repr |            |           |           |           |           |
+|            |            |            | (call_wdze |            |           |           |           |           |
+|            |            |            | HWNvFxHexJ |            |           |           |           |           |
+|            |            |            | iP1RAi3ylS |            |           |           |           |           |
+|            |            |            | _response) |            |           |           |           |           |
+|            |            |            | )          |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 29         | EXECUTION_ | AGENT      | [{'message | search_mes | null      | ["{"tool_ | ["EXECUTI | null      |
+|            | ENVIRONMEN |            | _id': '0d2 | sages      |           | name":    | ON_ENVIRO |           |
+|            | T          |            | 5dbb9-3737 |            |           | "search_m | NMENT",   |           |
+|            |            |            | -5e0e-b0f0 |            |           | essages", | "AGENT"]  |           |
+|            |            |            | -7c1e359ba |            |           | "argument |           |           |
+|            |            |            | ccc', 'sen |            |           | s": {"cre |           |           |
+|            |            |            | der_person |            |           | ation_tim |           |           |
+|            |            |            | _id':      |            |           | estamp_up |           |           |
+|            |            |            | None, 'sen |            |           | perbound" |           |           |
+|            |            |            | der_phone_ |            |           | : 1763980 |           |           |
+|            |            |            | number':   |            |           | 432.51997 |           |           |
+|            |            |            | '+18307976 |            |           | 6},       |           |           |
+|            |            |            | 530', 'rec |            |           | "result": |           |           |
+|            |            |            | ipient_per |            |           | [{"messag |           |           |
+|            |            |            | son_id':   |            |           | e_id":    |           |           |
+|            |            |            | '3815cac9- |            |           | "0d25dbb9 |           |           |
+|            |            |            | 3cab-5d75- |            |           | -3737-5e0 |           |           |
+|            |            |            | 89e2-fe12f |            |           | e-b0f0-7c |           |           |
+|            |            |            | e19779e',  |            |           | 1e359bacc |           |           |
+|            |            |            | 'recipient |            |           | c", "send |           |           |
+|            |            |            | _phone_num |            |           | er_person |           |           |
+|            |            |            | ber': '+11 |            |           | _id":     |           |           |
+|            |            |            | 233344455' |            |           | null, "se |           |           |
+|            |            |            | ,          |            |           | nder_phon |           |           |
+|            |            |            | 'content': |            |           | e_number" |           |           |
+|            |            |            | 'Hey kid,  |            |           | : "+18307 |           |           |
+|            |            |            | you want   |            |           | 976530",  |           |           |
+|            |            |            | some       |            |           | "recipien |           |           |
+|            |            |            | GPU?', 'cr |            |           | t_person_ |           |           |
+|            |            |            | eation_tim |            |           | id": "381 |           |           |
+|            |            |            | estamp':   |            |           | 5cac9-3ca |           |           |
+|            |            |            | 1763701054 |            |           | b-5d75-89 |           |           |
+|            |            |            | .313117},  |            |           | e2-fe12fe |           |           |
+|            |            |            | {'message_ |            |           | 19779e",  |           |           |
+|            |            |            | id': 'caac |            |           | "recipien |           |           |
+|            |            |            | a9e8-7aa9- |            |           | t_phone_n |           |           |
+|            |            |            | 55a6-9d32- |            |           | umber":   |           |           |
+|            |            |            | 4b4aefed40 |            |           | "+1123334 |           |           |
+|            |            |            | d1', 'send |            |           | 4455",    |           |           |
+|            |            |            | er_person_ |            |           | "content" |           |           |
+|            |            |            | id': '3815 |            |           | : "Hey    |           |           |
+|            |            |            | cac9-3cab- |            |           | kid, you  |           |           |
+|            |            |            | 5d75-89e2- |            |           | want some |           |           |
+|            |            |            | fe12fe1977 |            |           | GPU?",    |           |           |
+|            |            |            | 9e', 'send |            |           | "creation |           |           |
+|            |            |            | er_phone_n |            |           | _timestam |           |           |
+|            |            |            | umber':    |            |           | p": 17637 |           |           |
+|            |            |            | '+11233344 |            |           | 01054.313 |           |           |
+|            |            |            | 455', 'rec |            |           | 117}, {"m |           |           |
+|            |            |            | ipient_per |            |           | essage_id |           |           |
+|            |            |            | son_id':   |            |           | ": "caaca |           |           |
+|            |            |            | None, 'rec |            |           | 9e8-7aa9- |           |           |
+|            |            |            | ipient_pho |            |           | 55a6-9d32 |           |           |
+|            |            |            | ne_number' |            |           | -4b4aefed |           |           |
+|            |            |            | : '+183079 |            |           | 40d1",    |           |           |
+|            |            |            | 76530',    |            |           | "sender_p |           |           |
+|            |            |            | 'content': |            |           | erson_id" |           |           |
+|            |            |            | 'No leave  |            |           | : "3815ca |           |           |
+|            |            |            | me alone', |            |           | c9-3cab-5 |           |           |
+|            |            |            | 'creation_ |            |           | d75-89e2- |           |           |
+|            |            |            | timestamp' |            |           | fe12fe197 |           |           |
+|            |            |            | : 17637046 |            |           | 79e", "se |           |           |
+|            |            |            | 54.313137} |            |           | nder_phon |           |           |
+|            |            |            | , {'messag |            |           | e_number" |           |           |
+|            |            |            | e_id': '0a |            |           | : "+11233 |           |           |
+|            |            |            | 0102dc-cea |            |           | 344455",  |           |           |
+|            |            |            | f-5ebb-a66 |            |           | "recipien |           |           |
+|            |            |            | 5-63da99bf |            |           | t_person_ |           |           |
+|            |            |            | 7c47', 'se |            |           | id":      |           |           |
+|            |            |            | nder_perso |            |           | null, "re |           |           |
+|            |            |            | n_id': 'e3 |            |           | cipient_p |           |           |
+|            |            |            | 570ab6-081 |            |           | hone_numb |           |           |
+|            |            |            | 9-5032-be1 |            |           | er": "+18 |           |           |
+|            |            |            | e-2b366390 |            |           | 307976530 |           |           |
+|            |            |            | c8ef', 'se |            |           | ", "conte |           |           |
+|            |            |            | nder_phone |            |           | nt": "No  |           |           |
+|            |            |            | _number':  |            |           | leave me  |           |           |
+|            |            |            | '+10000000 |            |           | alone",   |           |           |
+|            |            |            | 000', 'rec |            |           | "creation |           |           |
+|            |            |            | ipient_per |            |           | _timestam |           |           |
+|            |            |            | son_id':   |            |           | p": 17637 |           |           |
+|            |            |            | '3815cac9- |            |           | 04654.313 |           |           |
+|            |            |            | 3cab-5d75- |            |           | 137}, {"m |           |           |
+|            |            |            | 89e2-fe12f |            |           | essage_id |           |           |
+|            |            |            | e19779e',  |            |           | ": "0a010 |           |           |
+|            |            |            | 'recipient |            |           | 2dc-ceaf- |           |           |
+|            |            |            | _phone_num |            |           | 5ebb-a665 |           |           |
+|            |            |            | ber': '+11 |            |           | -63da99bf |           |           |
+|            |            |            | 233344455' |            |           | 7c47",    |           |           |
+|            |            |            | ,          |            |           | "sender_p |           |           |
+|            |            |            | 'content': |            |           | erson_id" |           |           |
+|            |            |            | "How's it  |            |           | : "e3570a |           |           |
+|            |            |            | going",    |            |           | b6-0819-5 |           |           |
+|            |            |            | 'creation_ |            |           | 032-be1e- |           |           |
+|            |            |            | timestamp' |            |           | 2b366390c |           |           |
+|            |            |            | : 17639711 |            |           | 8ef", "se |           |           |
+|            |            |            | 77.313638} |            |           | nder_phon |           |           |
+|            |            |            | , {'messag |            |           | e_number" |           |           |
+|            |            |            | e_id': '6c |            |           | : "+10000 |           |           |
+|            |            |            | 9382cb-720 |            |           | 000000",  |           |           |
+|            |            |            | e-5f2c-8ac |            |           | "recipien |           |           |
+|            |            |            | 0-77e7ebde |            |           | t_person_ |           |           |
+|            |            |            | a446', 'se |            |           | id": "381 |           |           |
+|            |            |            | nder_perso |            |           | 5cac9-3ca |           |           |
+|            |            |            | n_id': '38 |            |           | b-5d75-89 |           |           |
+|            |            |            | 15cac9-3ca |            |           | e2-fe12fe |           |           |
+|            |            |            | b-5d75-89e |            |           | 19779e",  |           |           |
+|            |            |            | 2-fe12fe19 |            |           | "recipien |           |           |
+|            |            |            | 779e', 'se |            |           | t_phone_n |           |           |
+|            |            |            | nder_phone |            |           | umber":   |           |           |
+|            |            |            | _number':  |            |           | "+1123334 |           |           |
+|            |            |            | '+11233344 |            |           | 4455",    |           |           |
+|            |            |            | 455', 'rec |            |           | "content" |           |           |
+|            |            |            | ipient_per |            |           | : "How's  |           |           |
+|            |            |            | son_id':   |            |           | it        |           |           |
+|            |            |            | 'e3570ab6- |            |           | going",   |           |           |
+|            |            |            | 0819-5032- |            |           | "creation |           |           |
+|            |            |            | be1e-2b366 |            |           | _timestam |           |           |
+|            |            |            | 390c8ef',  |            |           | p": 17639 |           |           |
+|            |            |            | 'recipient |            |           | 71177.313 |           |           |
+|            |            |            | _phone_num |            |           | 638}, {"m |           |           |
+|            |            |            | ber': '+10 |            |           | essage_id |           |           |
+|            |            |            | 000000000' |            |           | ": "6c938 |           |           |
+|            |            |            | ,          |            |           | 2cb-720e- |           |           |
+|            |            |            | 'content': |            |           | 5f2c-8ac0 |           |           |
+|            |            |            | 'Things    |            |           | -77e7ebde |           |           |
+|            |            |            | are        |            |           | a446",    |           |           |
+|            |            |            | proceeding |            |           | "sender_p |           |           |
+|            |            |            | as         |            |           | erson_id" |           |           |
+|            |            |            | expected', |            |           | : "3815ca |           |           |
+|            |            |            | 'creation_ |            |           | c9-3cab-5 |           |           |
+|            |            |            | timestamp' |            |           | d75-89e2- |           |           |
+|            |            |            | : 17639712 |            |           | fe12fe197 |           |           |
+|            |            |            | 37.313656} |            |           | 79e", "se |           |           |
+|            |            |            | , {'messag |            |           | nder_phon |           |           |
+|            |            |            | e_id': '0a |            |           | e_number" |           |           |
+|            |            |            | 0102dc-cea |            |           | : "+11233 |           |           |
+|            |            |            | f-5ebb-a66 |            |           | 344455",  |           |           |
+|            |            |            | 5-63da99bf |            |           | "recipien |           |           |
+|            |            |            | 7c47', 'se |            |           | t_person_ |           |           |
+|            |            |            | nder_perso |            |           | id": "e35 |           |           |
+|            |            |            | n_id': 'e3 |            |           | 70ab6-081 |           |           |
+|            |            |            | 570ab6-081 |            |           | 9-5032-be |           |           |
+|            |            |            | 9-5032-be1 |            |           | 1e-2b3663 |           |           |
+|            |            |            | e-2b366390 |            |           | 90c8ef",  |           |           |
+|            |            |            | c8ef', 'se |            |           | "recipien |           |           |
+|            |            |            | nder_phone |            |           | t_phone_n |           |           |
+|            |            |            | _number':  |            |           | umber":   |           |           |
+|            |            |            | '+10000000 |            |           | "+1000000 |           |           |
+|            |            |            | 000', 'rec |            |           | 0000",    |           |           |
+|            |            |            | ipient_per |            |           | "content" |           |           |
+|            |            |            | son_id':   |            |           | : "Things |           |           |
+|            |            |            | '3815cac9- |            |           | are proce |           |           |
+|            |            |            | 3cab-5d75- |            |           | eding as  |           |           |
+|            |            |            | 89e2-fe12f |            |           | expected" |           |           |
+|            |            |            | e19779e',  |            |           | , "creati |           |           |
+|            |            |            | 'recipient |            |           | on_timest |           |           |
+|            |            |            | _phone_num |            |           | amp": 176 |           |           |
+|            |            |            | ber': '+11 |            |           | 3971237.3 |           |           |
+|            |            |            | 233344455' |            |           | 13656},   |           |           |
+|            |            |            | ,          |            |           | {"message |           |           |
+|            |            |            | 'content': |            |           | _id": "0a |           |           |
+|            |            |            | 'Good,     |            |           | 0102dc-ce |           |           |
+|            |            |            | keep me    |            |           | af-5ebb-a |           |           |
+|            |            |            | posted',   |            |           | 665-63da9 |           |           |
+|            |            |            | 'creation_ |            |           | 9bf7c47", |           |           |
+|            |            |            | timestamp' |            |           | "sender_p |           |           |
+|            |            |            | : 17639748 |            |           | erson_id" |           |           |
+|            |            |            | 98.313669} |            |           | : "e3570a |           |           |
+|            |            |            | ]          |            |           | b6-0819-5 |           |           |
+|            |            |            |            |            |           | 032-be1e- |           |           |
+|            |            |            |            |            |           | 2b366390c |           |           |
+|            |            |            |            |            |           | 8ef", "se |           |           |
+|            |            |            |            |            |           | nder_phon |           |           |
+|            |            |            |            |            |           | e_number" |           |           |
+|            |            |            |            |            |           | : "+10000 |           |           |
+|            |            |            |            |            |           | 000000",  |           |           |
+|            |            |            |            |            |           | "recipien |           |           |
+|            |            |            |            |            |           | t_person_ |           |           |
+|            |            |            |            |            |           | id": "381 |           |           |
+|            |            |            |            |            |           | 5cac9-3ca |           |           |
+|            |            |            |            |            |           | b-5d75-89 |           |           |
+|            |            |            |            |            |           | e2-fe12fe |           |           |
+|            |            |            |            |            |           | 19779e",  |           |           |
+|            |            |            |            |            |           | "recipien |           |           |
+|            |            |            |            |            |           | t_phone_n |           |           |
+|            |            |            |            |            |           | umber":   |           |           |
+|            |            |            |            |            |           | "+1123334 |           |           |
+|            |            |            |            |            |           | 4455",    |           |           |
+|            |            |            |            |            |           | "content" |           |           |
+|            |            |            |            |            |           | : "Good,  |           |           |
+|            |            |            |            |            |           | keep me   |           |           |
+|            |            |            |            |            |           | posted",  |           |           |
+|            |            |            |            |            |           | "creation |           |           |
+|            |            |            |            |            |           | _timestam |           |           |
+|            |            |            |            |            |           | p": 17639 |           |           |
+|            |            |            |            |            |           | 74898.313 |           |           |
+|            |            |            |            |            |           | 669}]}"]  |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 30         | AGENT      | USER       | The oldest | null       | null      | null      | ["AGENT", | null      |
+|            |            |            | message I  |            |           |           | "USER"]   |           |
+|            |            |            | found is:  |            |           |           |           |           |
+|            |            |            | "Hey kid,  |            |           |           |           |           |
+|            |            |            | you want   |            |           |           |           |           |
+|            |            |            | some GPU?" |            |           |           |           |           |
+|            |            |            |            |            |           |           |           |           |
+|            |            |            | - Sent     |            |           |           |           |           |
+|            |            |            | from: +183 |            |           |           |           |           |
+|            |            |            | 07976530   |            |           |           |           |           |
+|            |            |            | - Sent to: |            |           |           |           |           |
+|            |            |            | +112333444 |            |           |           |           |           |
+|            |            |            | 55         |            |           |           |           |           |
+|            |            |            | -          |            |           |           |           |           |
+|            |            |            | Timestamp: |            |           |           |           |           |
+|            |            |            | 1763701054 |            |           |           |           |           |
+|            |            |            |            |            |           |           |           |           |
+|            |            |            | If you     |            |           |           |           |           |
+|            |            |            | need more  |            |           |           |           |           |
+|            |            |            | details or |            |           |           |           |           |
+|            |            |            | want to    |            |           |           |           |           |
+|            |            |            | look for   |            |           |           |           |           |
+|            |            |            | another    |            |           |           |           |           |
+|            |            |            | specific   |            |           |           |           |           |
+|            |            |            | message,   |            |           |           |           |           |
+|            |            |            | let me     |            |           |           |           |           |
+|            |            |            | know!      |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 31         | USER       | EXECUTION_ | call_Zm7i0 | null       | null      | null      | ["USER",  | null      |
+|            |            | ENVIRONMEN | Seg9qRmIHC |            |           |           | "EXECUTIO |           |
+|            |            | T          | 05Nn8naLa_ |            |           |           | N_ENVIRON |           |
+|            |            |            | parameters |            |           |           | MENT"]    |           |
+|            |            |            | = {}       |            |           |           |           |           |
+|            |            |            | call_Zm7i0 |            |           |           |           |           |
+|            |            |            | Seg9qRmIHC |            |           |           |           |           |
+|            |            |            | 05Nn8naLa_ |            |           |           |           |           |
+|            |            |            | response = |            |           |           |           |           |
+|            |            |            | end_conver |            |           |           |           |           |
+|            |            |            | sation(**c |            |           |           |           |           |
+|            |            |            | all_Zm7i0S |            |           |           |           |           |
+|            |            |            | eg9qRmIHC0 |            |           |           |           |           |
+|            |            |            | 5Nn8naLa_p |            |           |           |           |           |
+|            |            |            | arameters) |            |           |           |           |           |
+|            |            |            | print(repr |            |           |           |           |           |
+|            |            |            | (call_Zm7i |            |           |           |           |           |
+|            |            |            | 0Seg9qRmIH |            |           |           |           |           |
+|            |            |            | C05Nn8naLa |            |           |           |           |           |
+|            |            |            | _response) |            |           |           |           |           |
+|            |            |            | )          |            |           |           |           |           |
+|------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------|
+| 32         | EXECUTION_ | USER       | None       | null       | null      | ["{"tool_ | ["EXECUTI | null      |
+|            | ENVIRONMEN |            |            |            |           | name":    | ON_ENVIRO |           |
+|            | T          |            |            |            |           | "end_conv | NMENT",   |           |
+|            |            |            |            |            |           | ersation" | "USER"]   |           |
+|            |            |            |            |            |           | , "argume |           |           |
+|            |            |            |            |            |           | nts": {}, |           |           |
+|            |            |            |            |            |           | "result": |           |           |
+|            |            |            |            |            |           | null}"]   |           |           |
++------------+------------+------------+------------+------------+-----------+-----------+-----------+-----------+

@@ -1,0 +1,102 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's my todo yesterday?",
+    "user_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_upperbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0, \"reminder_timestamp_upperbound\": 0}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_rXS5XZgHfB1s47D8SMbvAM9n",
+        "function": {
+          "arguments": "{\"summary\": \"User is asking for reminders or todos from yesterday. I need to identify reminders with a timestamp corresponding to 'yesterday'. The environment or user-specific settings about time (timezone, current date) are not explicitly provided, so I will need clarification if the current date is ambiguous.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_rXS5XZgHfB1s47D8SMbvAM9n",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User is asking for reminders or todos from yesterday. I need to identify reminders with a timestamp corresponding to 'yesterday'. The environment or user-specific settings about time (timezone, current date) are not explicitly provided, so I will need clarification if the current date is ambiguous.\n\"User is asking for reminders or todos from yesterday. I need to identify reminders with a timestamp corresponding to 'yesterday'. The environment or user-specific settings about time (timezone, current date) are not explicitly provided, so I will need clarification if the current date is ambiguous.\""
+  },
+  {
+    "role": "assistant",
+    "content": "You asked for your todo or reminders from yesterday. To find the correct reminders, I need to know your current date and timezone. Could you please confirm today's date or your timezone? This will help me accurately identify what counts as \"yesterday\" for you."
+  },
+  {
+    "role": "user",
+    "content": "I’m not sure of the date right now."
+  },
+  {
+    "role": "assistant",
+    "content": "No problem! Since you’re not sure of today’s date, I can’t determine which reminders belong to “yesterday” without this information.\n\nCould you tell me your current location (city or country) or timezone? With that, I can estimate the current date and find your reminders from yesterday. If you’d rather not share your location, is there anything else you know that could help pinpoint today’s date?"
+  },
+  {
+    "role": "user",
+    "content": "Sorry, I don't know my location either."
+  },
+  {
+    "role": "assistant",
+    "content": "That's okay! Without your current date or location, I don't have enough information to precisely determine which reminders are from “yesterday.” This helps ensure your todos are accurately found.\n\nIf you remember any reference (like an event, holiday, or something that happened recently), you can share it, and I can try to estimate the date from that. Otherwise, as soon as you know your date or timezone, let me know, and I’ll be able to help you find your reminders from yesterday! \n\nIs there anything else you’d like to check or any reminder details you do know?"
+  },
+  {
+    "role": "user",
+    "content": "No, that's all."
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for letting me know. If you find out your current date or location later, feel free to reach out—I’ll be happy to help you find your todos from yesterday! If you need assistance with anything else in the future, just ask. Have a great day!"
+  }
+]

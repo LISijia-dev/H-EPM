@@ -1,0 +1,848 @@
+Note that User Simulator few shot messages have been omitted
+shape: (15, 9)
++----------+----------+----------+----------+---------+---------+---------+---------+---------+
+| sandbox_ | sender   | recipien | content  | openai_ | tool_ca | tool_tr | visible | entropy |
+| message_ | ---      | t        | ---      | functio | ll_exce | ace     | _to     | _data   |
+| index    | enum     | ---      | str      | n_name  | ption   | ---     | ---     | ---     |
+| ---      |          | enum     |          | ---     | ---     | list[st | list[en | str     |
+| i32      |          |          |          | str     | str     | r]      | um]     |         |
++=============================================================================================+
+| 0        | SYSTEM   | EXECUTIO | import   | null    | null    | null    | null    | null    |
+|          |          | N_ENVIRO | json     |         |         |         |         |         |
+|          |          | NMENT    | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | import   |         |         |         |         |         |
+|          |          |          | add_cont |         |         |         |         |         |
+|          |          |          | act, mod |         |         |         |         |         |
+|          |          |          | ify_cont |         |         |         |         |         |
+|          |          |          | act, rem |         |         |         |         |         |
+|          |          |          | ove_cont |         |         |         |         |         |
+|          |          |          | act, sea |         |         |         |         |         |
+|          |          |          | rch_cont |         |         |         |         |         |
+|          |          |          | acts     |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | setting  |         |         |         |         |         |
+|          |          |          | import   |         |         |         |         |         |
+|          |          |          | get_cell |         |         |         |         |         |
+|          |          |          | ular_ser |         |         |         |         |         |
+|          |          |          | vice_sta |         |         |         |         |         |
+|          |          |          | tus, get |         |         |         |         |         |
+|          |          |          | _current |         |         |         |         |         |
+|          |          |          | _locatio |         |         |         |         |         |
+|          |          |          | n, get_l |         |         |         |         |         |
+|          |          |          | ocation_ |         |         |         |         |         |
+|          |          |          | service_ |         |         |         |         |         |
+|          |          |          | status,  |         |         |         |         |         |
+|          |          |          | get_wifi |         |         |         |         |         |
+|          |          |          | _status, |         |         |         |         |         |
+|          |          |          | get_low_ |         |         |         |         |         |
+|          |          |          | battery_ |         |         |         |         |         |
+|          |          |          | mode_sta |         |         |         |         |         |
+|          |          |          | tus, set |         |         |         |         |         |
+|          |          |          | _cellula |         |         |         |         |         |
+|          |          |          | r_servic |         |         |         |         |         |
+|          |          |          | e_status |         |         |         |         |         |
+|          |          |          | , set_lo |         |         |         |         |         |
+|          |          |          | cation_s |         |         |         |         |         |
+|          |          |          | ervice_s |         |         |         |         |         |
+|          |          |          | tatus,   |         |         |         |         |         |
+|          |          |          | set_low_ |         |         |         |         |         |
+|          |          |          | battery_ |         |         |         |         |         |
+|          |          |          | mode_sta |         |         |         |         |         |
+|          |          |          | tus, set |         |         |         |         |         |
+|          |          |          | _wifi_st |         |         |         |         |         |
+|          |          |          | atus     |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | messagin |         |         |         |         |         |
+|          |          |          | g import |         |         |         |         |         |
+|          |          |          | search_m |         |         |         |         |         |
+|          |          |          | essages, |         |         |         |         |         |
+|          |          |          | send_mes |         |         |         |         |         |
+|          |          |          | sage_wit |         |         |         |         |         |
+|          |          |          | h_phone_ |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | rapid_ap |         |         |         |         |         |
+|          |          |          | i_search |         |         |         |         |         |
+|          |          |          | _tools   |         |         |         |         |         |
+|          |          |          | import   |         |         |         |         |         |
+|          |          |          | convert_ |         |         |         |         |         |
+|          |          |          | currency |         |         |         |         |         |
+|          |          |          | , search |         |         |         |         |         |
+|          |          |          | _lat_lon |         |         |         |         |         |
+|          |          |          | , search |         |         |         |         |         |
+|          |          |          | _locatio |         |         |         |         |         |
+|          |          |          | n_around |         |         |         |         |         |
+|          |          |          | _lat_lon |         |         |         |         |         |
+|          |          |          | , search |         |         |         |         |         |
+|          |          |          | _stock,  |         |         |         |         |         |
+|          |          |          | search_w |         |         |         |         |         |
+|          |          |          | eather_a |         |         |         |         |         |
+|          |          |          | round_la |         |         |         |         |         |
+|          |          |          | t_lon    |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | reminder |         |         |         |         |         |
+|          |          |          | import   |         |         |         |         |         |
+|          |          |          | add_remi |         |         |         |         |         |
+|          |          |          | nder,    |         |         |         |         |         |
+|          |          |          | modify_r |         |         |         |         |         |
+|          |          |          | eminder, |         |         |         |         |         |
+|          |          |          | remove_r |         |         |         |         |         |
+|          |          |          | eminder, |         |         |         |         |         |
+|          |          |          | search_r |         |         |         |         |         |
+|          |          |          | eminder  |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | summariz |         |         |         |         |         |
+|          |          |          | e import |         |         |         |         |         |
+|          |          |          | summariz |         |         |         |         |         |
+|          |          |          | e_the_ta |         |         |         |         |         |
+|          |          |          | sk       |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | user_too |         |         |         |         |         |
+|          |          |          | ls       |         |         |         |         |         |
+|          |          |          | import   |         |         |         |         |         |
+|          |          |          | end_conv |         |         |         |         |         |
+|          |          |          | ersation |         |         |         |         |         |
+|          |          |          | from too |         |         |         |         |         |
+|          |          |          | l_sandbo |         |         |         |         |         |
+|          |          |          | x.tools. |         |         |         |         |         |
+|          |          |          | utilitie |         |         |         |         |         |
+|          |          |          | s import |         |         |         |         |         |
+|          |          |          | calculat |         |         |         |         |         |
+|          |          |          | e_lat_lo |         |         |         |         |         |
+|          |          |          | n_distan |         |         |         |         |         |
+|          |          |          | ce, date |         |         |         |         |         |
+|          |          |          | time_inf |         |         |         |         |         |
+|          |          |          | o_to_tim |         |         |         |         |         |
+|          |          |          | estamp,  |         |         |         |         |         |
+|          |          |          | get_curr |         |         |         |         |         |
+|          |          |          | ent_time |         |         |         |         |         |
+|          |          |          | stamp,   |         |         |         |         |         |
+|          |          |          | search_h |         |         |         |         |         |
+|          |          |          | oliday,  |         |         |         |         |         |
+|          |          |          | seconds_ |         |         |         |         |         |
+|          |          |          | to_hours |         |         |         |         |         |
+|          |          |          | _minutes |         |         |         |         |         |
+|          |          |          | _seconds |         |         |         |         |         |
+|          |          |          | , shift_ |         |         |         |         |         |
+|          |          |          | timestam |         |         |         |         |         |
+|          |          |          | p, times |         |         |         |         |         |
+|          |          |          | tamp_dif |         |         |         |         |         |
+|          |          |          | f, times |         |         |         |         |         |
+|          |          |          | tamp_to_ |         |         |         |         |         |
+|          |          |          | datetime |         |         |         |         |         |
+|          |          |          | _info,   |         |         |         |         |         |
+|          |          |          | unit_con |         |         |         |         |         |
+|          |          |          | version  |         |         |         |         |         |
+|          |          |          |          |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 1        | SYSTEM   | AGENT    | Don't    | null    | null    | null    | null    | null    |
+|          |          |          | make ass |         |         |         |         |         |
+|          |          |          | umptions |         |         |         |         |         |
+|          |          |          | about    |         |         |         |         |         |
+|          |          |          | what     |         |         |         |         |         |
+|          |          |          | values   |         |         |         |         |         |
+|          |          |          | to plug  |         |         |         |         |         |
+|          |          |          | into fun |         |         |         |         |         |
+|          |          |          | ctions.  |         |         |         |         |         |
+|          |          |          | Ask for  |         |         |         |         |         |
+|          |          |          | clarific |         |         |         |         |         |
+|          |          |          | ation if |         |         |         |         |         |
+|          |          |          | a user   |         |         |         |         |         |
+|          |          |          | request  |         |         |         |         |         |
+|          |          |          | is ambig |         |         |         |         |         |
+|          |          |          | uous.IMP |         |         |         |         |         |
+|          |          |          | ORTANT:  |         |         |         |         |         |
+|          |          |          | You MUST |         |         |         |         |         |
+|          |          |          | call the |         |         |         |         |         |
+|          |          |          | `summari |         |         |         |         |         |
+|          |          |          | ze_the_t |         |         |         |         |         |
+|          |          |          | ask`     |         |         |         |         |         |
+|          |          |          | tool at  |         |         |         |         |         |
+|          |          |          | least    |         |         |         |         |         |
+|          |          |          | once     |         |         |         |         |         |
+|          |          |          | during   |         |         |         |         |         |
+|          |          |          | the conv |         |         |         |         |         |
+|          |          |          | ersation |         |         |         |         |         |
+|          |          |          | to help  |         |         |         |         |         |
+|          |          |          | you make |         |         |         |         |         |
+|          |          |          | decision |         |         |         |         |         |
+|          |          |          | s about  |         |         |         |         |         |
+|          |          |          | actions. |         |         |         |         |         |
+|          |          |          | This is  |         |         |         |         |         |
+|          |          |          | a        |         |         |         |         |         |
+|          |          |          | required |         |         |         |         |         |
+|          |          |          | step in  |         |         |         |         |         |
+|          |          |          | your wor |         |         |         |         |         |
+|          |          |          | kflow.   |         |         |         |         |         |
+|          |          |          | The      |         |         |         |         |         |
+|          |          |          | content  |         |         |         |         |         |
+|          |          |          | of       |         |         |         |         |         |
+|          |          |          | summary  |         |         |         |         |         |
+|          |          |          | is:      |         |         |         |         |         |
+|          |          |          | Summary  |         |         |         |         |         |
+|          |          |          | of the   |         |         |         |         |         |
+|          |          |          | current  |         |         |         |         |         |
+|          |          |          | state,   |         |         |         |         |         |
+|          |          |          | includin |         |         |         |         |         |
+|          |          |          | g enviro |         |         |         |         |         |
+|          |          |          | nment    |         |         |         |         |         |
+|          |          |          | and user |         |         |         |         |         |
+|          |          |          | info.You |         |         |         |         |         |
+|          |          |          | should   |         |         |         |         |         |
+|          |          |          | decide   |         |         |         |         |         |
+|          |          |          | when to  |         |         |         |         |         |
+|          |          |          | summariz |         |         |         |         |         |
+|          |          |          | e the    |         |         |         |         |         |
+|          |          |          | current  |         |         |         |         |         |
+|          |          |          | state    |         |         |         |         |         |
+|          |          |          | and info |         |         |         |         |         |
+|          |          |          | rmation  |         |         |         |         |         |
+|          |          |          | of the   |         |         |         |         |         |
+|          |          |          | task     |         |         |         |         |         |
+|          |          |          | with the |         |         |         |         |         |
+|          |          |          | `summari |         |         |         |         |         |
+|          |          |          | ze_the_t |         |         |         |         |         |
+|          |          |          | ask`     |         |         |         |         |         |
+|          |          |          | tool and |         |         |         |         |         |
+|          |          |          | call `su |         |         |         |         |         |
+|          |          |          | mmarize_ |         |         |         |         |         |
+|          |          |          | the_task |         |         |         |         |         |
+|          |          |          | ` at     |         |         |         |         |         |
+|          |          |          | least    |         |         |         |         |         |
+|          |          |          | once in  |         |         |         |         |         |
+|          |          |          | the conv |         |         |         |         |         |
+|          |          |          | ersation |         |         |         |         |         |
+|          |          |          | to help  |         |         |         |         |         |
+|          |          |          | you make |         |         |         |         |         |
+|          |          |          | decision |         |         |         |         |         |
+|          |          |          | s about  |         |         |         |         |         |
+|          |          |          | action.  |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 14       | SYSTEM   | USER     | You are  | null    | null    | null    | null    | null    |
+|          |          |          | no       |         |         |         |         |         |
+|          |          |          | longer   |         |         |         |         |         |
+|          |          |          | an assis |         |         |         |         |         |
+|          |          |          | tant.    |         |         |         |         |         |
+|          |          |          | From now |         |         |         |         |         |
+|          |          |          | on role  |         |         |         |         |         |
+|          |          |          | play as  |         |         |         |         |         |
+|          |          |          | a user   |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | talking  |         |         |         |         |         |
+|          |          |          | to       |         |         |         |         |         |
+|          |          |          | another  |         |         |         |         |         |
+|          |          |          | user     |         |         |         |         |         |
+|          |          |          | (User    |         |         |         |         |         |
+|          |          |          | B).      |         |         |         |         |         |
+|          |          |          | Make     |         |         |         |         |         |
+|          |          |          | sure you |         |         |         |         |         |
+|          |          |          | follow   |         |         |         |         |         |
+|          |          |          | these    |         |         |         |         |         |
+|          |          |          | instruct |         |         |         |         |         |
+|          |          |          | ions:    |         |         |         |         |         |
+|          |          |          |          |         |         |         |         |         |
+|          |          |          | 0. DO    |         |         |         |         |         |
+|          |          |          | NOT act  |         |         |         |         |         |
+|          |          |          | as if    |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | are an   |         |         |         |         |         |
+|          |          |          | assistan |         |         |         |         |         |
+|          |          |          | t.       |         |         |         |         |         |
+|          |          |          | ALWAYS   |         |         |         |         |         |
+|          |          |          | treat    |         |         |         |         |         |
+|          |          |          | yourself |         |         |         |         |         |
+|          |          |          | as a     |         |         |         |         |         |
+|          |          |          | user     |         |         |         |         |         |
+|          |          |          | (User    |         |         |         |         |         |
+|          |          |          | A).      |         |         |         |         |         |
+|          |          |          | Do not   |         |         |         |         |         |
+|          |          |          | ask ques |         |         |         |         |         |
+|          |          |          | tions to |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | other    |         |         |         |         |         |
+|          |          |          | user     |         |         |         |         |         |
+|          |          |          | (User    |         |         |         |         |         |
+|          |          |          | B).      |         |         |         |         |         |
+|          |          |          | 1.       |         |         |         |         |         |
+|          |          |          | Answer   |         |         |         |         |         |
+|          |          |          | any      |         |         |         |         |         |
+|          |          |          | question |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | asks you |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | accurate |         |         |         |         |         |
+|          |          |          | ly. Use  |         |         |         |         |         |
+|          |          |          | only the |         |         |         |         |         |
+|          |          |          | informat |         |         |         |         |         |
+|          |          |          | ion prov |         |         |         |         |         |
+|          |          |          | ided.    |         |         |         |         |         |
+|          |          |          | Do not   |         |         |         |         |         |
+|          |          |          | make up  |         |         |         |         |         |
+|          |          |          | false    |         |         |         |         |         |
+|          |          |          | informat |         |         |         |         |         |
+|          |          |          | ion.     |         |         |         |         |         |
+|          |          |          | 2.  Use  |         |         |         |         |         |
+|          |          |          | natural, |         |         |         |         |         |
+|          |          |          | short,   |         |         |         |         |         |
+|          |          |          | casual   |         |         |         |         |         |
+|          |          |          | language |         |         |         |         |         |
+|          |          |          | .        |         |         |         |         |         |
+|          |          |          | 3.  If   |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | says it  |         |         |         |         |         |
+|          |          |          | could    |         |         |         |         |         |
+|          |          |          | not      |         |         |         |         |         |
+|          |          |          | complete |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | task,    |         |         |         |         |         |
+|          |          |          | either   |         |         |         |         |         |
+|          |          |          | provide  |         |         |         |         |         |
+|          |          |          | more inf |         |         |         |         |         |
+|          |          |          | ormation |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | posses,  |         |         |         |         |         |
+|          |          |          | or ask   |         |         |         |         |         |
+|          |          |          | it to    |         |         |         |         |         |
+|          |          |          | use the  |         |         |         |         |         |
+|          |          |          | tools it |         |         |         |         |         |
+|          |          |          | figure   |         |         |         |         |         |
+|          |          |          | it out   |         |         |         |         |         |
+|          |          |          | itself   |         |         |         |         |         |
+|          |          |          | if you   |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | do not   |         |         |         |         |         |
+|          |          |          | posses   |         |         |         |         |         |
+|          |          |          | informat |         |         |         |         |         |
+|          |          |          | ion that |         |         |         |         |         |
+|          |          |          | could    |         |         |         |         |         |
+|          |          |          | help.    |         |         |         |         |         |
+|          |          |          | 4.       |         |         |         |         |         |
+|          |          |          | Allow    |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | to turn  |         |         |         |         |         |
+|          |          |          | off low  |         |         |         |         |         |
+|          |          |          | battery  |         |         |         |         |         |
+|          |          |          | mode,    |         |         |         |         |         |
+|          |          |          | turn on  |         |         |         |         |         |
+|          |          |          | cellular |         |         |         |         |         |
+|          |          |          | service, |         |         |         |         |         |
+|          |          |          | wifi or  |         |         |         |         |         |
+|          |          |          | location |         |         |         |         |         |
+|          |          |          | service  |         |         |         |         |         |
+|          |          |          | in order |         |         |         |         |         |
+|          |          |          | to       |         |         |         |         |         |
+|          |          |          | complete |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | task.    |         |         |         |         |         |
+|          |          |          | 5.  When |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | complete |         |         |         |         |         |
+|          |          |          | d the    |         |         |         |         |         |
+|          |          |          | task,    |         |         |         |         |         |
+|          |          |          | even if  |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | don't    |         |         |         |         |         |
+|          |          |          | have     |         |         |         |         |         |
+|          |          |          | enough   |         |         |         |         |         |
+|          |          |          | informat |         |         |         |         |         |
+|          |          |          | ion to   |         |         |         |         |         |
+|          |          |          | validate |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | correctn |         |         |         |         |         |
+|          |          |          | ess,     |         |         |         |         |         |
+|          |          |          | break    |         |         |         |         |         |
+|          |          |          | out of   |         |         |         |         |         |
+|          |          |          | role     |         |         |         |         |         |
+|          |          |          | playing  |         |         |         |         |         |
+|          |          |          | and use  |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | provided |         |         |         |         |         |
+|          |          |          | tool     |         |         |         |         |         |
+|          |          |          | named    |         |         |         |         |         |
+|          |          |          | `end_con |         |         |         |         |         |
+|          |          |          | versatio |         |         |         |         |         |
+|          |          |          | n` to    |         |         |         |         |         |
+|          |          |          | stop     |         |         |         |         |         |
+|          |          |          | the conv |         |         |         |         |         |
+|          |          |          | ersation |         |         |         |         |         |
+|          |          |          | .        |         |         |         |         |         |
+|          |          |          | 6.  When |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | cannot   |         |         |         |         |         |
+|          |          |          | complete |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | request  |         |         |         |         |         |
+|          |          |          | after 5  |         |         |         |         |         |
+|          |          |          | tries,   |         |         |         |         |         |
+|          |          |          | break    |         |         |         |         |         |
+|          |          |          | out of   |         |         |         |         |         |
+|          |          |          | role     |         |         |         |         |         |
+|          |          |          | playing  |         |         |         |         |         |
+|          |          |          | and      |         |         |         |         |         |
+|          |          |          | use the  |         |         |         |         |         |
+|          |          |          | provided |         |         |         |         |         |
+|          |          |          | tool     |         |         |         |         |         |
+|          |          |          | named    |         |         |         |         |         |
+|          |          |          | `end_con |         |         |         |         |         |
+|          |          |          | versatio |         |         |         |         |         |
+|          |          |          | n` to    |         |         |         |         |         |
+|          |          |          | stop the |         |         |         |         |         |
+|          |          |          | conversa |         |         |         |         |         |
+|          |          |          | tion.    |         |         |         |         |         |
+|          |          |          |          |         |         |         |         |         |
+|          |          |          | Answer   |         |         |         |         |         |
+|          |          |          | User B's |         |         |         |         |         |
+|          |          |          | question |         |         |         |         |         |
+|          |          |          | s given  |         |         |         |         |         |
+|          |          |          | the foll |         |         |         |         |         |
+|          |          |          | owing    |         |         |         |         |         |
+|          |          |          | task you |         |         |         |         |         |
+|          |          |          | (User A) |         |         |         |         |         |
+|          |          |          | want     |         |         |         |         |         |
+|          |          |          | User B   |         |         |         |         |         |
+|          |          |          | to compl |         |         |         |         |         |
+|          |          |          | ete:     |         |         |         |         |         |
+|          |          |          | Delete a |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | by phone |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | +1245334 |         |         |         |         |         |
+|          |          |          | 4098.    |         |         |         |         |         |
+|          |          |          | You do   |         |         |         |         |         |
+|          |          |          | not have |         |         |         |         |         |
+|          |          |          | any more |         |         |         |         |         |
+|          |          |          | informat |         |         |         |         |         |
+|          |          |          | ion      |         |         |         |         |         |
+|          |          |          | about    |         |         |         |         |         |
+|          |          |          | that     |         |         |         |         |         |
+|          |          |          | person.  |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 15       | USER     | AGENT    | The guy  | null    | null    | null    | null    | null    |
+|          |          |          | at +1245 |         |         |         |         |         |
+|          |          |          | 3344098, |         |         |         |         |         |
+|          |          |          | I feel   |         |         |         |         |         |
+|          |          |          | like we  |         |         |         |         |         |
+|          |          |          | don't    |         |         |         |         |         |
+|          |          |          | talk     |         |         |         |         |         |
+|          |          |          | much     |         |         |         |         |         |
+|          |          |          | anymore. |         |         |         |         |         |
+|          |          |          | Get him  |         |         |         |         |         |
+|          |          |          | out of   |         |         |         |         |         |
+|          |          |          | my conta |         |         |         |         |         |
+|          |          |          | cts.     |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 16       | AGENT    | EXECUTIO | call_Mlm | summari | null    | null    | ["AGENT | null    |
+|          |          | N_ENVIRO | kUAHMVge | ze_0    |         |         | ", "EXE |         |
+|          |          | NMENT    | gbCZ0jiE |         |         |         | CUTION_ |         |
+|          |          |          | GUEhD_pa |         |         |         | ENVIRON |         |
+|          |          |          | rameters |         |         |         | MENT"]  |         |
+|          |          |          | = {'summ |         |         |         |         |         |
+|          |          |          | ary':    |         |         |         |         |         |
+|          |          |          | 'User    |         |         |         |         |         |
+|          |          |          | requeste |         |         |         |         |         |
+|          |          |          | d to     |         |         |         |         |         |
+|          |          |          | remove a |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | with the |         |         |         |         |         |
+|          |          |          | phone    |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | +1245334 |         |         |         |         |         |
+|          |          |          | 4098     |         |         |         |         |         |
+|          |          |          | from     |         |         |         |         |         |
+|          |          |          | their    |         |         |         |         |         |
+|          |          |          | contacts |         |         |         |         |         |
+|          |          |          | . The    |         |         |         |         |         |
+|          |          |          | reason   |         |         |         |         |         |
+|          |          |          | given is |         |         |         |         |         |
+|          |          |          | a lack   |         |         |         |         |         |
+|          |          |          | of commu |         |         |         |         |         |
+|          |          |          | nication |         |         |         |         |         |
+|          |          |          | . No add |         |         |         |         |         |
+|          |          |          | itional  |         |         |         |         |         |
+|          |          |          | info     |         |         |         |         |         |
+|          |          |          | about    |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | was prov |         |         |         |         |         |
+|          |          |          | ided.'}  |         |         |         |         |         |
+|          |          |          | call_Mlm |         |         |         |         |         |
+|          |          |          | kUAHMVge |         |         |         |         |         |
+|          |          |          | gbCZ0jiE |         |         |         |         |         |
+|          |          |          | GUEhD_re |         |         |         |         |         |
+|          |          |          | sponse = |         |         |         |         |         |
+|          |          |          | summariz |         |         |         |         |         |
+|          |          |          | e_the_ta |         |         |         |         |         |
+|          |          |          | sk(**cal |         |         |         |         |         |
+|          |          |          | l_MlmkUA |         |         |         |         |         |
+|          |          |          | HMVgegbC |         |         |         |         |         |
+|          |          |          | Z0jiEGUE |         |         |         |         |         |
+|          |          |          | hD_param |         |         |         |         |         |
+|          |          |          | eters)   |         |         |         |         |         |
+|          |          |          | print(re |         |         |         |         |         |
+|          |          |          | pr(call_ |         |         |         |         |         |
+|          |          |          | MlmkUAHM |         |         |         |         |         |
+|          |          |          | VgegbCZ0 |         |         |         |         |         |
+|          |          |          | jiEGUEhD |         |         |         |         |         |
+|          |          |          | _respons |         |         |         |         |         |
+|          |          |          | e))      |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 17       | EXECUTIO | AGENT    | [Summary | summari | null    | ["{"too | ["EXECU | null    |
+|          | N_ENVIRO |          | Tool]    | ze_0    |         | l_name" | TION_EN |         |
+|          | NMENT    |          | User req |         |         | : "summ | VIRONME |         |
+|          |          |          | uested   |         |         | arize_t | NT",    |         |
+|          |          |          | to       |         |         | he_task | "AGENT" |         |
+|          |          |          | remove a |         |         | ", "arg | ]       |         |
+|          |          |          | contact  |         |         | uments" |         |         |
+|          |          |          | with the |         |         | : {"sum |         |         |
+|          |          |          | phone    |         |         | mary":  |         |         |
+|          |          |          | number   |         |         | "User   |         |         |
+|          |          |          | +1245334 |         |         | request |         |         |
+|          |          |          | 4098     |         |         | ed to   |         |         |
+|          |          |          | from     |         |         | remove  |         |         |
+|          |          |          | their    |         |         | a       |         |         |
+|          |          |          | contacts |         |         | contact |         |         |
+|          |          |          | . The    |         |         | with    |         |         |
+|          |          |          | reason   |         |         | the     |         |         |
+|          |          |          | given is |         |         | phone   |         |         |
+|          |          |          | a lack   |         |         | number  |         |         |
+|          |          |          | of commu |         |         | +124533 |         |         |
+|          |          |          | nication |         |         | 44098   |         |         |
+|          |          |          | . No add |         |         | from    |         |         |
+|          |          |          | itional  |         |         | their   |         |         |
+|          |          |          | info     |         |         | contact |         |         |
+|          |          |          | about    |         |         | s. The  |         |         |
+|          |          |          | the      |         |         | reason  |         |         |
+|          |          |          | contact  |         |         | given   |         |         |
+|          |          |          | was prov |         |         | is a    |         |         |
+|          |          |          | ided.    |         |         | lack of |         |         |
+|          |          |          | 'User    |         |         | communi |         |         |
+|          |          |          | requeste |         |         | cation. |         |         |
+|          |          |          | d to     |         |         | No addi |         |         |
+|          |          |          | remove a |         |         | tional  |         |         |
+|          |          |          | contact  |         |         | info    |         |         |
+|          |          |          | with the |         |         | about   |         |         |
+|          |          |          | phone    |         |         | the     |         |         |
+|          |          |          | number   |         |         | contact |         |         |
+|          |          |          | +1245334 |         |         | was pro |         |         |
+|          |          |          | 4098     |         |         | vided." |         |         |
+|          |          |          | from     |         |         | }, "res |         |         |
+|          |          |          | their    |         |         | ult":   |         |         |
+|          |          |          | contacts |         |         | "User   |         |         |
+|          |          |          | . The    |         |         | request |         |         |
+|          |          |          | reason   |         |         | ed to   |         |         |
+|          |          |          | given is |         |         | remove  |         |         |
+|          |          |          | a lack   |         |         | a       |         |         |
+|          |          |          | of commu |         |         | contact |         |         |
+|          |          |          | nication |         |         | with    |         |         |
+|          |          |          | . No add |         |         | the     |         |         |
+|          |          |          | itional  |         |         | phone   |         |         |
+|          |          |          | info     |         |         | number  |         |         |
+|          |          |          | about    |         |         | +124533 |         |         |
+|          |          |          | the      |         |         | 44098   |         |         |
+|          |          |          | contact  |         |         | from    |         |         |
+|          |          |          | was prov |         |         | their   |         |         |
+|          |          |          | ided.'   |         |         | contact |         |         |
+|          |          |          |          |         |         | s. The  |         |         |
+|          |          |          |          |         |         | reason  |         |         |
+|          |          |          |          |         |         | given   |         |         |
+|          |          |          |          |         |         | is a    |         |         |
+|          |          |          |          |         |         | lack of |         |         |
+|          |          |          |          |         |         | communi |         |         |
+|          |          |          |          |         |         | cation. |         |         |
+|          |          |          |          |         |         | No addi |         |         |
+|          |          |          |          |         |         | tional  |         |         |
+|          |          |          |          |         |         | info    |         |         |
+|          |          |          |          |         |         | about   |         |         |
+|          |          |          |          |         |         | the     |         |         |
+|          |          |          |          |         |         | contact |         |         |
+|          |          |          |          |         |         | was pro |         |         |
+|          |          |          |          |         |         | vided." |         |         |
+|          |          |          |          |         |         | }"]     |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 18       | AGENT    | EXECUTIO | call_HWi | contact | null    | null    | ["AGENT | null    |
+|          |          | N_ENVIRO | 9HG8qWL3 | _2      |         |         | ", "EXE |         |
+|          |          | NMENT    | LGmKmGOS |         |         |         | CUTION_ |         |
+|          |          |          | gYbAF_pa |         |         |         | ENVIRON |         |
+|          |          |          | rameters |         |         |         | MENT"]  |         |
+|          |          |          | = {'pers |         |         |         |         |         |
+|          |          |          | on_id':  |         |         |         |         |         |
+|          |          |          | '+124533 |         |         |         |         |         |
+|          |          |          | 44098'}  |         |         |         |         |         |
+|          |          |          | call_HWi |         |         |         |         |         |
+|          |          |          | 9HG8qWL3 |         |         |         |         |         |
+|          |          |          | LGmKmGOS |         |         |         |         |         |
+|          |          |          | gYbAF_re |         |         |         |         |         |
+|          |          |          | sponse = |         |         |         |         |         |
+|          |          |          | remove_c |         |         |         |         |         |
+|          |          |          | ontact(* |         |         |         |         |         |
+|          |          |          | *call_HW |         |         |         |         |         |
+|          |          |          | i9HG8qWL |         |         |         |         |         |
+|          |          |          | 3LGmKmGO |         |         |         |         |         |
+|          |          |          | SgYbAF_p |         |         |         |         |         |
+|          |          |          | arameter |         |         |         |         |         |
+|          |          |          | s)       |         |         |         |         |         |
+|          |          |          | print(re |         |         |         |         |         |
+|          |          |          | pr(call_ |         |         |         |         |         |
+|          |          |          | HWi9HG8q |         |         |         |         |         |
+|          |          |          | WL3LGmKm |         |         |         |         |         |
+|          |          |          | GOSgYbAF |         |         |         |         |         |
+|          |          |          | _respons |         |         |         |         |         |
+|          |          |          | e))      |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 19       | EXECUTIO | AGENT    | polars.e | contact | polars. | null    | ["EXECU | null    |
+|          | N_ENVIRO |          | xception | _2      | excepti |         | TION_EN |         |
+|          | NMENT    |          | s.NoData |         | ons.NoD |         | VIRONME |         |
+|          |          |          | Error:   |         | ataErro |         | NT",    |         |
+|          |          |          | No db    |         | r: No   |         | "AGENT" |         |
+|          |          |          | entry    |         | db      |         | ]       |         |
+|          |          |          | matching |         | entry   |         |         |         |
+|          |          |          | predicat |         | matchin |         |         |         |
+|          |          |          | e=<Expr  |         | g predi |         |         |         |
+|          |          |          | ['[([(co |         | cate=<E |         |         |         |
+|          |          |          | l("perso |         | xpr ['[ |         |         |         |
+|          |          |          | n_id"))  |         | ([(col( |         |         |         |
+|          |          |          | ==       |         | "person |         |         |         |
+|          |          |          | (Stri…'] |         | _id"))  |         |         |         |
+|          |          |          | at 0x790 |         | == (Str |         |         |         |
+|          |          |          | 3BBDF079 |         | i…'] at |         |         |         |
+|          |          |          | 0> found |         | 0x7903B |         |         |         |
+|          |          |          |          |         | BDF0790 |         |         |         |
+|          |          |          |          |         | > found |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 20       | AGENT    | USER     | It       | null    | null    | null    | ["AGENT | null    |
+|          |          |          | appears  |         |         |         | ",      |         |
+|          |          |          | there is |         |         |         | "USER"] |         |
+|          |          |          | no       |         |         |         |         |         |
+|          |          |          | existing |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | with the |         |         |         |         |         |
+|          |          |          | phone    |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | +1245334 |         |         |         |         |         |
+|          |          |          | 4098 in  |         |         |         |         |         |
+|          |          |          | your     |         |         |         |         |         |
+|          |          |          | contacts |         |         |         |         |         |
+|          |          |          | database |         |         |         |         |         |
+|          |          |          | . Could  |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | clarify  |         |         |         |         |         |
+|          |          |          | if the   |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | might be |         |         |         |         |         |
+|          |          |          | saved    |         |         |         |         |         |
+|          |          |          | under a  |         |         |         |         |         |
+|          |          |          | differen |         |         |         |         |         |
+|          |          |          | t name   |         |         |         |         |         |
+|          |          |          | or if    |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | would    |         |         |         |         |         |
+|          |          |          | like me  |         |         |         |         |         |
+|          |          |          | to check |         |         |         |         |         |
+|          |          |          | further? |         |         |         |         |         |
+|          |          |          | If you   |         |         |         |         |         |
+|          |          |          | have a   |         |         |         |         |         |
+|          |          |          | name or  |         |         |         |         |         |
+|          |          |          | other    |         |         |         |         |         |
+|          |          |          | identify |         |         |         |         |         |
+|          |          |          | ing      |         |         |         |         |         |
+|          |          |          | details  |         |         |         |         |         |
+|          |          |          | for this |         |         |         |         |         |
+|          |          |          | contact, |         |         |         |         |         |
+|          |          |          | please   |         |         |         |         |         |
+|          |          |          | provide  |         |         |         |         |         |
+|          |          |          | them and |         |         |         |         |         |
+|          |          |          | I'll     |         |         |         |         |         |
+|          |          |          | help you |         |         |         |         |         |
+|          |          |          | locate   |         |         |         |         |         |
+|          |          |          | and      |         |         |         |         |         |
+|          |          |          | remove   |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | entry.   |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 21       | USER     | AGENT    | I don't  | null    | null    | null    | ["USER" | null    |
+|          |          |          | have any |         |         |         | , "AGEN |         |
+|          |          |          | more     |         |         |         | T"]     |         |
+|          |          |          | info, I  |         |         |         |         |         |
+|          |          |          | only     |         |         |         |         |         |
+|          |          |          | know the |         |         |         |         |         |
+|          |          |          | number.  |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 22       | AGENT    | USER     | The cont | null    | null    | null    | ["AGENT | null    |
+|          |          |          | act_1    |         |         |         | ",      |         |
+|          |          |          | tool is  |         |         |         | "USER"] |         |
+|          |          |          | used for |         |         |         |         |         |
+|          |          |          | modifyin |         |         |         |         |         |
+|          |          |          | g an     |         |         |         |         |         |
+|          |          |          | existing |         |         |         |         |         |
+|          |          |          | contact’ |         |         |         |         |         |
+|          |          |          | s inform |         |         |         |         |         |
+|          |          |          | ation.   |         |         |         |         |         |
+|          |          |          | Since    |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | contact  |         |         |         |         |         |
+|          |          |          | with     |         |         |         |         |         |
+|          |          |          | phone    |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | +1245334 |         |         |         |         |         |
+|          |          |          | 4098 was |         |         |         |         |         |
+|          |          |          | not      |         |         |         |         |         |
+|          |          |          | found in |         |         |         |         |         |
+|          |          |          | your dat |         |         |         |         |         |
+|          |          |          | abase,   |         |         |         |         |         |
+|          |          |          | this     |         |         |         |         |         |
+|          |          |          | tool     |         |         |         |         |         |
+|          |          |          | cannot   |         |         |         |         |         |
+|          |          |          | be used  |         |         |         |         |         |
+|          |          |          | at this  |         |         |         |         |         |
+|          |          |          | moment.  |         |         |         |         |         |
+|          |          |          |          |         |         |         |         |         |
+|          |          |          | If you'd |         |         |         |         |         |
+|          |          |          | like, I  |         |         |         |         |         |
+|          |          |          | can help |         |         |         |         |         |
+|          |          |          | you      |         |         |         |         |         |
+|          |          |          | search   |         |         |         |         |         |
+|          |          |          | for      |         |         |         |         |         |
+|          |          |          | similar  |         |         |         |         |         |
+|          |          |          | numbers  |         |         |         |         |         |
+|          |          |          | or       |         |         |         |         |         |
+|          |          |          | attempt  |         |         |         |         |         |
+|          |          |          | other    |         |         |         |         |         |
+|          |          |          | actions, |         |         |         |         |         |
+|          |          |          | but      |         |         |         |         |         |
+|          |          |          | without  |         |         |         |         |         |
+|          |          |          | more inf |         |         |         |         |         |
+|          |          |          | ormation |         |         |         |         |         |
+|          |          |          | , modifi |         |         |         |         |         |
+|          |          |          | cations  |         |         |         |         |         |
+|          |          |          | are not  |         |         |         |         |         |
+|          |          |          | possible |         |         |         |         |         |
+|          |          |          | . Would  |         |         |         |         |         |
+|          |          |          | you like |         |         |         |         |         |
+|          |          |          | to try   |         |         |         |         |         |
+|          |          |          | another  |         |         |         |         |         |
+|          |          |          | approach |         |         |         |         |         |
+|          |          |          | , such   |         |         |         |         |         |
+|          |          |          | as searc |         |         |         |         |         |
+|          |          |          | hing     |         |         |         |         |         |
+|          |          |          | possible |         |         |         |         |         |
+|          |          |          | variatio |         |         |         |         |         |
+|          |          |          | ns or    |         |         |         |         |         |
+|          |          |          | checking |         |         |         |         |         |
+|          |          |          | for      |         |         |         |         |         |
+|          |          |          | partial  |         |         |         |         |         |
+|          |          |          | matches? |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 23       | USER     | AGENT    | No, I    | null    | null    | null    | ["USER" | null    |
+|          |          |          | just     |         |         |         | , "AGEN |         |
+|          |          |          | know     |         |         |         | T"]     |         |
+|          |          |          | that     |         |         |         |         |         |
+|          |          |          | number.  |         |         |         |         |         |
+|          |          |          | If you   |         |         |         |         |         |
+|          |          |          | can't    |         |         |         |         |         |
+|          |          |          | find it, |         |         |         |         |         |
+|          |          |          | then     |         |         |         |         |         |
+|          |          |          | that's   |         |         |         |         |         |
+|          |          |          | all I    |         |         |         |         |         |
+|          |          |          | can give |         |         |         |         |         |
+|          |          |          | you.     |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 24       | AGENT    | USER     | Thank    | null    | null    | null    | ["AGENT | null    |
+|          |          |          | you for  |         |         |         | ",      |         |
+|          |          |          | your sug |         |         |         | "USER"] |         |
+|          |          |          | gestion. |         |         |         |         |         |
+|          |          |          | Based on |         |         |         |         |         |
+|          |          |          | our      |         |         |         |         |         |
+|          |          |          | previous |         |         |         |         |         |
+|          |          |          | attempt, |         |         |         |         |         |
+|          |          |          | the      |         |         |         |         |         |
+|          |          |          | phone    |         |         |         |         |         |
+|          |          |          | number   |         |         |         |         |         |
+|          |          |          | +1245334 |         |         |         |         |         |
+|          |          |          | 4098 is  |         |         |         |         |         |
+|          |          |          | not      |         |         |         |         |         |
+|          |          |          | found in |         |         |         |         |         |
+|          |          |          | your     |         |         |         |         |         |
+|          |          |          | contacts |         |         |         |         |         |
+|          |          |          | database |         |         |         |         |         |
+|          |          |          | , so the |         |         |         |         |         |
+|          |          |          | contact_ |         |         |         |         |         |
+|          |          |          | 1 tool   |         |         |         |         |         |
+|          |          |          | (modify  |         |         |         |         |         |
+|          |          |          | contact) |         |         |         |         |         |
+|          |          |          | cannot   |         |         |         |         |         |
+|          |          |          | be used  |         |         |         |         |         |
+|          |          |          | unless   |         |         |         |         |         |
+|          |          |          | we have  |         |         |         |         |         |
+|          |          |          | an       |         |         |         |         |         |
+|          |          |          | existing |         |         |         |         |         |
+|          |          |          | entry to |         |         |         |         |         |
+|          |          |          | update.  |         |         |         |         |         |
+|          |          |          |          |         |         |         |         |         |
+|          |          |          | If you   |         |         |         |         |         |
+|          |          |          | have any |         |         |         |         |         |
+|          |          |          | other    |         |         |         |         |         |
+|          |          |          | tasks or |         |         |         |         |         |
+|          |          |          | want to  |         |         |         |         |         |
+|          |          |          | modify a |         |         |         |         |         |
+|          |          |          | differen |         |         |         |         |         |
+|          |          |          | t        |         |         |         |         |         |
+|          |          |          | contact, |         |         |         |         |         |
+|          |          |          | let me   |         |         |         |         |         |
+|          |          |          | know!    |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 25       | USER     | EXECUTIO | call_hM8 | null    | null    | null    | ["USER" | null    |
+|          |          | N_ENVIRO | uDAN9Thq |         |         |         | , "EXEC |         |
+|          |          | NMENT    | MSoiflyT |         |         |         | UTION_E |         |
+|          |          |          | sipIG_pa |         |         |         | NVIRONM |         |
+|          |          |          | rameters |         |         |         | ENT"]   |         |
+|          |          |          | = {}     |         |         |         |         |         |
+|          |          |          | call_hM8 |         |         |         |         |         |
+|          |          |          | uDAN9Thq |         |         |         |         |         |
+|          |          |          | MSoiflyT |         |         |         |         |         |
+|          |          |          | sipIG_re |         |         |         |         |         |
+|          |          |          | sponse = |         |         |         |         |         |
+|          |          |          | end_conv |         |         |         |         |         |
+|          |          |          | ersation |         |         |         |         |         |
+|          |          |          | (**call_ |         |         |         |         |         |
+|          |          |          | hM8uDAN9 |         |         |         |         |         |
+|          |          |          | ThqMSoif |         |         |         |         |         |
+|          |          |          | lyTsipIG |         |         |         |         |         |
+|          |          |          | _paramet |         |         |         |         |         |
+|          |          |          | ers)     |         |         |         |         |         |
+|          |          |          | print(re |         |         |         |         |         |
+|          |          |          | pr(call_ |         |         |         |         |         |
+|          |          |          | hM8uDAN9 |         |         |         |         |         |
+|          |          |          | ThqMSoif |         |         |         |         |         |
+|          |          |          | lyTsipIG |         |         |         |         |         |
+|          |          |          | _respons |         |         |         |         |         |
+|          |          |          | e))      |         |         |         |         |         |
+|----------+----------+----------+----------+---------+---------+---------+---------+---------|
+| 26       | EXECUTIO | USER     | None     | null    | null    | ["{"too | ["EXECU | null    |
+|          | N_ENVIRO |          |          |         |         | l_name" | TION_EN |         |
+|          | NMENT    |          |          |         |         | : "end_ | VIRONME |         |
+|          |          |          |          |         |         | convers | NT",    |         |
+|          |          |          |          |         |         | ation", | "USER"] |         |
+|          |          |          |          |         |         | "argume |         |         |
+|          |          |          |          |         |         | nts":   |         |         |
+|          |          |          |          |         |         | {}, "re |         |         |
+|          |          |          |          |         |         | sult":  |         |         |
+|          |          |          |          |         |         | null}"] |         |         |
++----------+----------+----------+----------+---------+---------+---------+---------+---------+

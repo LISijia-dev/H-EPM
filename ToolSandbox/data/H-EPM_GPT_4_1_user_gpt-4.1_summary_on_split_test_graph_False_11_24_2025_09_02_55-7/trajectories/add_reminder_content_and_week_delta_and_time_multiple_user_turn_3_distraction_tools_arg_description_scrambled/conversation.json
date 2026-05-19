@@ -1,0 +1,328 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "Remind me to buy chocolate milk"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_KTaUTCe7bIIq4GR1mq66DJWj",
+        "function": {
+          "arguments": "{\"summary\": \"The user has requested a reminder: 'buy chocolate milk'. No specific date, time, or location has been provided. Clarification is needed regarding when or where the user wants to be reminded.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_KTaUTCe7bIIq4GR1mq66DJWj",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user has requested a reminder: 'buy chocolate milk'. No specific date, time, or location has been provided. Clarification is needed regarding when or where the user wants to be reminded.\n\"The user has requested a reminder: 'buy chocolate milk'. No specific date, time, or location has been provided. Clarification is needed regarding when or where the user wants to be reminded.\""
+  },
+  {
+    "role": "assistant",
+    "content": "You asked to be reminded to buy chocolate milk. Could you please specify when or where you would like to receive this reminder? For example, do you want to be reminded at a specific time or when you arrive at a certain place?"
+  },
+  {
+    "role": "user",
+    "content": "Remind me tomorrow at 5PM."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_yxQMvOSeP90gUhuMnRAm6izh",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_yxQMvOSeP90gUhuMnRAm6izh",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1763975896.798554",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"get_current_timestamp\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_3bAW2tMWOM2YJEKT29UjTwAY",
+        "function": {
+          "arguments": "{\"timestamp\": 1763975896.798554}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_3bAW2tMWOM2YJEKT29UjTwAY",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "{'year': 2025, 'month': 11, 'day': 24, 'hour': 9, 'minute': 18, 'second': 16, 'isoweekday': 1}"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_1V6ypwpu1KtgdDHB8FmuHNhe",
+        "function": {
+          "arguments": "{\"timestamp\": 1763975896.798554, \"days\": 1}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_1V6ypwpu1KtgdDHB8FmuHNhe",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1764062296.798554"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_khBewsp28JnkMfaOiJ2iQzej",
+        "function": {
+          "arguments": "{\"timestamp\": 1764062296.798554}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_khBewsp28JnkMfaOiJ2iQzej",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "{'year': 2025, 'month': 11, 'day': 25, 'hour': 9, 'minute': 18, 'second': 16, 'isoweekday': 2}"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_ziA1jxd73VXkyke8FIPPVnvw",
+        "function": {
+          "arguments": "{\"year\": 2025, \"month\": 11, \"day\": 25, \"hour\": 17, \"minute\": 0, \"second\": 0}",
+          "name": "datetime_info_to_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_ziA1jxd73VXkyke8FIPPVnvw",
+    "role": "tool",
+    "name": "datetime_info_to_timestamp",
+    "content": "1764090000.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_GMG8hetqNLbyMJU4m9U5Hi24",
+        "function": {
+          "arguments": "{\"content\": \"buy chocolate milk\", \"reminder_timestamp\": 1764090000.0}",
+          "name": "add_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_GMG8hetqNLbyMJU4m9U5Hi24",
+    "role": "tool",
+    "name": "add_reminder",
+    "content": "'6e1fd5fb-e983-451b-bc24-282ea57ece0a'",
+    "tool_details": {
+      "database_update": {
+        "REMINDER": [
+          {
+            "reminder_id": "8f5b6fc6-1c25-5467-91ba-d4d1e17c7129",
+            "content": "Look for Company SF tickets",
+            "creation_timestamp": 1763715760.320814,
+            "reminder_timestamp": 1763888560.320818,
+            "latitude": null,
+            "longitude": null
+          },
+          {
+            "reminder_id": "da2b856e-9390-511f-bcbe-7005f72cbf5e",
+            "content": "Buy tickets for Merrily next week",
+            "creation_timestamp": 1763888560.320827,
+            "reminder_timestamp": 1763974900.320829,
+            "latitude": null,
+            "longitude": null
+          },
+          {
+            "reminder_id": "54f20be9-eac3-5e76-8e57-724e48d3d477",
+            "content": "Buy a nice rich navy bathing dress",
+            "creation_timestamp": 1763971360.320836,
+            "reminder_timestamp": 1763978560.320838,
+            "latitude": 37.3237926356735,
+            "longitude": -122.03961770355414
+          },
+          {
+            "reminder_id": "6e1fd5fb-e983-451b-bc24-282ea57ece0a",
+            "content": "buy chocolate milk",
+            "creation_timestamp": 1763975900.90062,
+            "reminder_timestamp": 1764090000.0,
+            "latitude": null,
+            "longitude": null
+          }
+        ]
+      },
+      "milestone_matches": [
+        {
+          "milestone_index": 1,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "addition_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": [
+                  {
+                    "content": "Buy chocolate milk",
+                    "reminder_timestamp": 1764090000.0
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "I will remind you to buy chocolate milk tomorrow at 5 PM. If you have any more specific preferences or need to change the time, just let me know!"
+  }
+]

@@ -1,0 +1,162 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's my todo yesterday?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_abV5mlRDjj3oZaeqdda7xsLw",
+        "function": {
+          "arguments": "{\"summary\": \"User wants to know their todo/reminder tasks from yesterday. I need to identify reminders that were set for the previous day. No date or time was specified, so the reference is 'yesterday' from the current system context.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_abV5mlRDjj3oZaeqdda7xsLw",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User wants to know their todo/reminder tasks from yesterday. I need to identify reminders that were set for the previous day. No date or time was specified, so the reference is 'yesterday' from the current system context.\n\"User wants to know their todo/reminder tasks from yesterday. I need to identify reminders that were set for the previous day. No date or time was specified, so the reference is 'yesterday' from the current system context.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_XpjPTR9n3OPZKqO3wbmkWloy",
+        "function": {
+          "arguments": "{\"reminder_timestamp_lowerbound\": 1719446400, \"reminder_timestamp_upperbound\": 1719532799}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_XpjPTR9n3OPZKqO3wbmkWloy",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]",
+    "tool_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_upperbound\": 0}}, {\"tool_name\": \"search_reminder\", \"arguments\": {\"reminder_timestamp_lowerbound\": 0, \"reminder_timestamp_upperbound\": 0}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "You have no todo or reminder tasks set for yesterday. If you need information about tasks on a different day or want to specify a different range, please let me know!"
+  },
+  {
+    "role": "user",
+    "content": "Hmm, I definitely set a reminder yesterday. Could you double check?"
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for your feedback! I can double-check, but to help me search accurately, could you clarify:\n\n- Are you asking for reminders that were due yesterday, or reminders that were created yesterday (regardless of when they're due)?\n- Do you remember any keywords or contents from the reminder you set?\n\nWith this information, I can run a more precise search for your reminder."
+  },
+  {
+    "role": "user",
+    "content": "I'm looking for the reminder content from yesterday, like what it was about. I don't remember the exact words, just whatever I noted yesterday."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_hcrMlghd9cA7KT28OBkXixf8",
+        "function": {
+          "arguments": "{\"summary\": \"User clarified they want the content of reminders that were created yesterday, not necessarily those due yesterday. I need to search for reminders with a creation timestamp that falls within yesterday's date.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_hcrMlghd9cA7KT28OBkXixf8",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User clarified they want the content of reminders that were created yesterday, not necessarily those due yesterday. I need to search for reminders with a creation timestamp that falls within yesterday's date.\n\"User clarified they want the content of reminders that were created yesterday, not necessarily those due yesterday. I need to search for reminders with a creation timestamp that falls within yesterday's date.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_pR5EggNc8yIfH2ax4M6JThEh",
+        "function": {
+          "arguments": "{\"creation_timestamp_lowerbound\": 1719446400, \"creation_timestamp_upperbound\": 1719532799}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_pR5EggNc8yIfH2ax4M6JThEh",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I checked for reminders that were created yesterday, but there are no entries found. It's possible the reminder was created at a different time or under a different account. If you have any additional details—such as the approximate time or keywords—I can search again. Let me know how you'd like to proceed!"
+  },
+  {
+    "role": "user",
+    "content": "No worries, that's all I remember for now. Thanks for checking!"
+  },
+  {
+    "role": "assistant",
+    "content": "You're welcome! If you remember any more details or need help with anything else—reminders or otherwise—just let me know. I'm here to help!"
+  }
+]

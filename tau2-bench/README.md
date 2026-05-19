@@ -17,17 +17,10 @@ Domains are:
 - `retail`
 - `telecom`
 
-All the information that an agent developer needs to build an agent for a domain can be accessed through the domain's API docs. See [View domain documentation](#view-domain-documentation) for more details.
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone https://github.com/sierra-research/tau2-bench
-cd tau2-bench
-```
-
-2. Create a new environment (optional)
+1. Create a new environment (optional)
 
 $\tau^2$-bench requires Python 3.10 or higher. You may create and activate a new environment:
 
@@ -36,7 +29,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-3. Install tau2
+2. Install tau2
 
 ```bash
 pip install -e .
@@ -66,12 +59,6 @@ make clean
 ```
 
 ## Quick Start
-
-### Setup LLM API keys
-
-We use [LiteLLM](https://github.com/BerriAI/litellm) to manage LLM APIs, so you can use any LLM provider supported by LiteLLM.
-
-To provide your API keys, copy `.env.example` as `.env` and edit it to include your API keys.
 
 ### Run agent evaluation
 
@@ -114,19 +101,6 @@ This tool allows you to:
 - View a particular simulation
 - View task details
 
-### View domain documentation
-```bash
-tau2 domain <domain>
-```
-Visit http://127.0.0.1:8004/redoc to see the domain policy and API documentation.
-
-![domain_viewer1](figs/domain_viewer.png)
-
-### Check data configuration
-```bash
-tau2 check-data
-```
-This command checks if your data directory is properly configured and all required files are present.
 
 ## Experiments
 
@@ -168,6 +142,7 @@ tau2 run \
   --user-llm gpt-4.1 \
   ...
 ```
+## H-EPM
 
 ### Running with Conversation Summarization
 

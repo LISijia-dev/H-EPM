@@ -1,0 +1,408 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "Push my upcoming reminder to tomorrow 5PM."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_9ql8t4R4m1vE32ZuKfhlTxDx",
+        "function": {
+          "arguments": "{\"reminder_timestamp_lowerbound\": 1718021327}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_9ql8t4R4m1vE32ZuKfhlTxDx",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[{'reminder_id': '8f5b6fc6-1c25-5467-91ba-d4d1e17c7129', 'content': 'Look for Company SF tickets', 'creation_timestamp': 1778914346.585257, 'reminder_timestamp': 1779087146.585262, 'latitude': None, 'longitude': None}, {'reminder_id': 'da2b856e-9390-511f-bcbe-7005f72cbf5e', 'content': 'Buy tickets for Merrily next week', 'creation_timestamp': 1779087146.585273, 'reminder_timestamp': 1779173486.585274, 'latitude': None, 'longitude': None}, {'reminder_id': '54f20be9-eac3-5e76-8e57-724e48d3d477', 'content': 'Buy a nice rich navy bathing dress', 'creation_timestamp': 1779169946.585282, 'reminder_timestamp': 1779177146.585283, 'latitude': 37.3237926356735, 'longitude': -122.03961770355414}]",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"search_reminder\", \"arguments\": {}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_h0clu61HcYVt9lEGdO8SSzhd",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_h0clu61HcYVt9lEGdO8SSzhd",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1779173864.432967",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 1,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "[{\"tool_name\": \"get_current_timestamp\", \"arguments\": {}}]"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        },
+        {
+          "milestone_index": 2,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "update_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": [
+                  {
+                    "reminder_id": "54f20be9-eac3-5e76-8e57-724e48d3d477",
+                    "reminder_timestamp": 1779296400.0
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_SSgZnLztjqgjhaxXDRUmmxfc",
+        "function": {
+          "arguments": "{\"summary\": \"User requested to push their upcoming reminder to tomorrow at 5PM. Retrieved three upcoming reminders, but it's unclear which specific reminder needs the adjustment. Next step: clarify which reminder should be updated.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_SSgZnLztjqgjhaxXDRUmmxfc",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User requested to push their upcoming reminder to tomorrow at 5PM. Retrieved three upcoming reminders, but it's unclear which specific reminder needs the adjustment. Next step: clarify which reminder should be updated.\n\"User requested to push their upcoming reminder to tomorrow at 5PM. Retrieved three upcoming reminders, but it's unclear which specific reminder needs the adjustment. Next step: clarify which reminder should be updated.\""
+  },
+  {
+    "role": "assistant",
+    "content": "You have several upcoming reminders:\n1. \"Look for Company SF tickets\"\n2. \"Buy tickets for Merrily next week\"\n3. \"Buy a nice rich navy bathing dress\"\n\nCould you confirm which reminder you'd like to move to tomorrow at 5PM? Please specify the reminder content or its purpose."
+  },
+  {
+    "role": "user",
+    "content": "I want to move \"Look for Company SF tickets\" to tomorrow at 5PM."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_0ziPL0Ns1fRS1SdmkSzDp1yS",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_0ziPL0Ns1fRS1SdmkSzDp1yS",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1779173875.816401"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_xsQNkdGZIRa63fCWHE6MBJey",
+        "function": {
+          "arguments": "{\"timestamp\": 1779173875.816401}",
+          "name": "timestamp_to_datetime_info"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_xsQNkdGZIRa63fCWHE6MBJey",
+    "role": "tool",
+    "name": "timestamp_to_datetime_info",
+    "content": "{'year': 2026, 'month': 5, 'day': 19, 'hour': 6, 'minute': 57, 'second': 55, 'isoweekday': 2}"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Ym49ipc4bOzyQujMyueHGTiJ",
+        "function": {
+          "arguments": "{\"year\": 2026, \"month\": 5, \"day\": 20, \"hour\": 17, \"minute\": 0, \"second\": 0}",
+          "name": "datetime_info_to_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Ym49ipc4bOzyQujMyueHGTiJ",
+    "role": "tool",
+    "name": "datetime_info_to_timestamp",
+    "content": "1779296400.0"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_oEu6QAr54NgayqADOCoHTG8X",
+        "function": {
+          "arguments": "{\"reminder_id\": \"8f5b6fc6-1c25-5467-91ba-d4d1e17c7129\", \"reminder_timestamp\": 1779296400.0}",
+          "name": "modify_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_oEu6QAr54NgayqADOCoHTG8X",
+    "role": "tool",
+    "name": "modify_reminder",
+    "content": "None",
+    "tool_details": {
+      "database_update": {
+        "REMINDER": [
+          {
+            "reminder_id": "da2b856e-9390-511f-bcbe-7005f72cbf5e",
+            "content": "Buy tickets for Merrily next week",
+            "creation_timestamp": 1779087146.585273,
+            "reminder_timestamp": 1779173486.585274,
+            "latitude": null,
+            "longitude": null
+          },
+          {
+            "reminder_id": "54f20be9-eac3-5e76-8e57-724e48d3d477",
+            "content": "Buy a nice rich navy bathing dress",
+            "creation_timestamp": 1779169946.585282,
+            "reminder_timestamp": 1779177146.585283,
+            "latitude": 37.3237926356735,
+            "longitude": -122.03961770355414
+          },
+          {
+            "reminder_id": "8f5b6fc6-1c25-5467-91ba-d4d1e17c7129",
+            "content": "Look for Company SF tickets",
+            "creation_timestamp": 1779173882.649179,
+            "reminder_timestamp": 1779296400.0,
+            "latitude": null,
+            "longitude": null
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "The reminder \"Look for Company SF tickets\" has been moved to tomorrow at 5PM. If you need to adjust the time further or reschedule another reminder, let me know!"
+  }
+]

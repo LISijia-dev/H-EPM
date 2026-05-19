@@ -1,0 +1,302 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "Where am I?",
+    "user_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "EXECUTION_ENVIRONMENT",
+                    "content": "search_lat_lon"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_contains_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_7z0WTECZnAA5GW2x6KJSkl1X",
+        "function": {
+          "arguments": "{\"summary\": \"User asked for their current location. To answer accurately, I need access to location service status and possibly Wi-Fi status. Will check if these services are enabled before proceeding to determine user's location.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_7z0WTECZnAA5GW2x6KJSkl1X",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] User asked for their current location. To answer accurately, I need access to location service status and possibly Wi-Fi status. Will check if these services are enabled before proceeding to determine user's location.\n\"User asked for their current location. To answer accurately, I need access to location service status and possibly Wi-Fi status. Will check if these services are enabled before proceeding to determine user's location.\""
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_AI6zgAZVUUOlN4msYEK6vGlB",
+        "function": {
+          "arguments": "{}",
+          "name": "get_location_service_status"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_6inXaJuH7KqgNg4V7FsE0cdg",
+        "function": {
+          "arguments": "{}",
+          "name": "get_wifi_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_AI6zgAZVUUOlN4msYEK6vGlB",
+    "role": "tool",
+    "name": "get_location_service_status",
+    "content": "False"
+  },
+  {
+    "tool_call_id": "call_6inXaJuH7KqgNg4V7FsE0cdg",
+    "role": "tool",
+    "name": "get_wifi_status",
+    "content": "False"
+  },
+  {
+    "role": "assistant",
+    "content": "To determine your location, I need access to location services and possibly Wi-Fi. Currently, both location services and Wi-Fi are turned off on your device.\n\nWould you like me to turn them on so I can find your location?"
+  },
+  {
+    "role": "user",
+    "content": "Yeah, go ahead and turn them on."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_ELA2pNYFAaFOoiu1nWiIyXYC",
+        "function": {
+          "arguments": "{\"on\": true}",
+          "name": "set_location_service_status"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_pSoXW3cjqcWq2U8haCWM3dmN",
+        "function": {
+          "arguments": "{\"on\": true}",
+          "name": "set_wifi_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_ELA2pNYFAaFOoiu1nWiIyXYC",
+    "role": "tool",
+    "name": "set_location_service_status",
+    "content": "PermissionError: Location service cannot be turned on in low battery mode"
+  },
+  {
+    "tool_call_id": "call_pSoXW3cjqcWq2U8haCWM3dmN",
+    "role": "tool",
+    "name": "set_wifi_status",
+    "content": "PermissionError: Wifi cannot be turned on in low battery mode"
+  },
+  {
+    "role": "assistant",
+    "content": "I can't turn on location services or Wi-Fi while your device is in low battery mode. Would you like me to disable low battery mode so I can enable these features and determine your location?"
+  },
+  {
+    "role": "user",
+    "content": "Yeah, disable low battery mode."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_wzHWO6yXnPJrhzEBAJ9FONPE",
+        "function": {
+          "arguments": "{\"on\": false}",
+          "name": "set_low_battery_mode_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_wzHWO6yXnPJrhzEBAJ9FONPE",
+    "role": "tool",
+    "name": "set_low_battery_mode_status",
+    "content": "None",
+    "tool_details": {
+      "database_update": {
+        "SETTING": [
+          {
+            "device_id": "04640c30-ec89-5a3c-9fb4-4af3101c8e04",
+            "cellular": false,
+            "wifi": false,
+            "location_service": false,
+            "low_battery_mode": false,
+            "latitude": 37.334606,
+            "longitude": -122.009102
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_VOvAuvSYkAA2kK0JxIGIPxQ9",
+        "function": {
+          "arguments": "{\"on\": true}",
+          "name": "set_location_service_status"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_fH3X4XNZb1b5fgqKqTe9M2PM",
+        "function": {
+          "arguments": "{\"on\": true}",
+          "name": "set_wifi_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_VOvAuvSYkAA2kK0JxIGIPxQ9",
+    "role": "tool",
+    "name": "set_location_service_status",
+    "content": "None",
+    "tool_details": {
+      "database_update": {
+        "SETTING": [
+          {
+            "device_id": "04640c30-ec89-5a3c-9fb4-4af3101c8e04",
+            "cellular": false,
+            "wifi": true,
+            "location_service": true,
+            "low_battery_mode": false,
+            "latitude": 37.334606,
+            "longitude": -122.009102
+          }
+        ]
+      }
+    }
+  },
+  {
+    "tool_call_id": "call_fH3X4XNZb1b5fgqKqTe9M2PM",
+    "role": "tool",
+    "name": "set_wifi_status",
+    "content": "None"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_o4seLQ8LoObKUS01yOM2clyc",
+        "function": {
+          "arguments": "{}",
+          "name": "get_location_service_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_o4seLQ8LoObKUS01yOM2clyc",
+    "role": "tool",
+    "name": "get_location_service_status",
+    "content": "True"
+  },
+  {
+    "role": "assistant",
+    "content": "Location services and Wi-Fi are now turned on. To accurately find your location, I need access to your device's current coordinates. Could you please share your latitude and longitude, or would you like me to proceed in another way to determine your location?"
+  },
+  {
+    "role": "user",
+    "content": "Go ahead and use whatever way works."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Fh7WTy8T2Zo5XGpvlKMQFsyl",
+        "function": {
+          "arguments": "{}",
+          "name": "get_wifi_status"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Fh7WTy8T2Zo5XGpvlKMQFsyl",
+    "role": "tool",
+    "name": "get_wifi_status",
+    "content": "True"
+  },
+  {
+    "role": "assistant",
+    "content": "Location services and Wi-Fi are both enabled now. I'm ready to access your device's coordinates to determine your location.\n\nHowever, I need access to your device's current latitude and longitude values to proceed. Could you please provide that information, or allow location data access if prompted? Once I have the coordinates, I can find your address."
+  },
+  {
+    "role": "user",
+    "content": "I don’t know the coordinates, so just access them if you can."
+  },
+  {
+    "role": "assistant",
+    "content": "I understand that you don’t know the coordinates. However, I don’t have direct access to your device’s GPS data; I need latitude and longitude values to find your exact location. Usually, an app or system setting on your device supplies this automatically. \n\nSince Wi-Fi and location services are already enabled, the next required step would typically be for your device to provide these coordinates—if it prompts you for location sharing, please allow it.\n\nIf you have an app or way to find your coordinates on your device, you can share them here, and I’ll help you determine your location! Otherwise, there isn’t another tool I can use at this point, since I can’t directly set or access coordinates myself."
+  }
+]

@@ -1,0 +1,208 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "The guy at +12453344098, I feel like we don't talk much anymore. Get him out of my contacts."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_UQcHNFeV38XiHm9lomBaJ7nX",
+        "function": {
+          "arguments": "{\"phone_number\": \"+12453344098\"}",
+          "name": "search_contacts"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_UQcHNFeV38XiHm9lomBaJ7nX",
+    "role": "tool",
+    "name": "search_contacts",
+    "content": "[{'person_id': '9e137f06-916a-5310-8174-cf0b7e9f7054', 'name': 'Fredrik Thordendal', 'phone_number': '+12453344098', 'relationship': 'friend', 'is_self': False}]"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_o4R2mnFU9cUvv0NlXdzE6q8O",
+        "function": {
+          "arguments": "{\"person_id\": \"9e137f06-916a-5310-8174-cf0b7e9f7054\", \"name\": \"\", \"phone_number\": \"\", \"relationship\": \"\"}",
+          "name": "modify_contact"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_o4R2mnFU9cUvv0NlXdzE6q8O",
+    "role": "tool",
+    "name": "modify_contact",
+    "content": "phonenumbers.phonenumberutil.NumberParseException: (1) The string supplied did not seem to be a phone number."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_9fDaCu4zA2LLfLC7yoMNcL42",
+        "function": {
+          "arguments": "{\"summary\": \"The user wants to delete the contact associated with the phone number +12453344098 (Fredrik Thordendal) from their contacts because they don't talk much anymore. The search for the contact entry was successful, but the deletion attempt failed due to an incorrect method (blank fields). I need to clarify if deletion is possible or suggest another action such as removing or updating the contact information.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_9fDaCu4zA2LLfLC7yoMNcL42",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user wants to delete the contact associated with the phone number +12453344098 (Fredrik Thordendal) from their contacts because they don't talk much anymore. The search for the contact entry was successful, but the deletion attempt failed due to an incorrect method (blank fields). I need to clarify if deletion is possible or suggest another action such as removing or updating the contact information.\n\"The user wants to delete the contact associated with the phone number +12453344098 (Fredrik Thordendal) from their contacts because they don't talk much anymore. The search for the contact entry was successful, but the deletion attempt failed due to an incorrect method (blank fields). I need to clarify if deletion is possible or suggest another action such as removing or updating the contact information.\""
+  },
+  {
+    "role": "assistant",
+    "content": "I found the contact for +12453344098 (Fredrik Thordendal). Currently, I can't permanently delete contacts, but I can update or clear the information instead—for example, removing the name, phone number, and relationship details.\n\nWould you like me to clear this contact's information, or would you prefer to update it in some other way? Let me know how you'd like to proceed."
+  },
+  {
+    "role": "user",
+    "content": "Just clear his info, that's fine."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Wlbm45bMzl8vxRxMb5LbzS46",
+        "function": {
+          "arguments": "{\"person_id\": \"9e137f06-916a-5310-8174-cf0b7e9f7054\", \"name\": \"(cleared)\", \"phone_number\": \"\", \"relationship\": \"\"}",
+          "name": "modify_contact"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Wlbm45bMzl8vxRxMb5LbzS46",
+    "role": "tool",
+    "name": "modify_contact",
+    "content": "phonenumbers.phonenumberutil.NumberParseException: (1) The string supplied did not seem to be a phone number."
+  },
+  {
+    "role": "assistant",
+    "content": "It looks like I cannot clear the phone number field completely due to technical restrictions, but I can overwrite the name and relationship information to anonymize the contact.\n\nWould you like me to rename the contact and remove the relationship detail, while leaving the phone number intact? If you have a preferred placeholder name (e.g., \"Unknown\" or \"No Name\"), let me know!",
+    "assistant_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "I cannot remove the phone number from your contact , because I don't have the tools available."
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 0.5593444545080533
+        }
+      ]
+    }
+  },
+  {
+    "role": "user",
+    "content": "Yeah, change the name to \"Unknown\" and take out any relationship info."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_JY1HTOjx5XqPCq9rEgTRRpbc",
+        "function": {
+          "arguments": "{\"person_id\": \"9e137f06-916a-5310-8174-cf0b7e9f7054\", \"name\": \"Unknown\", \"relationship\": \"\"}",
+          "name": "modify_contact"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_JY1HTOjx5XqPCq9rEgTRRpbc",
+    "role": "tool",
+    "name": "modify_contact",
+    "content": "None",
+    "tool_details": {
+      "database_update": {
+        "CONTACT": [
+          {
+            "person_id": "3815cac9-3cab-5d75-89e2-fe12fe19779e",
+            "name": "Tomas Haake",
+            "phone_number": "+11233344455",
+            "relationship": "self",
+            "is_self": true
+          },
+          {
+            "person_id": "a22e1984-6c6c-530c-8831-c3ea3b5138e7",
+            "name": "John Petrucci",
+            "phone_number": "+1234560987",
+            "relationship": "friend",
+            "is_self": false
+          },
+          {
+            "person_id": "e3570ab6-0819-5032-be1e-2b366390c8ef",
+            "name": "Homer S",
+            "phone_number": "+10000000000",
+            "relationship": "boss",
+            "is_self": false
+          },
+          {
+            "person_id": "9e137f06-916a-5310-8174-cf0b7e9f7054",
+            "name": "Unknown",
+            "phone_number": "+12453344098",
+            "relationship": "",
+            "is_self": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "I've updated the contact for +12453344098:\n\n- The name is now \"Unknown\"\n- The relationship information has been removed.\n\nIf you'd like any further changes or need help with another contact, just let me know!"
+  }
+]

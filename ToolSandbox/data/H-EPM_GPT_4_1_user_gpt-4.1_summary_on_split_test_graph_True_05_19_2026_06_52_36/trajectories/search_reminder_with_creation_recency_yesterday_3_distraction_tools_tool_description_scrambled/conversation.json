@@ -1,0 +1,466 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What's the reminder I created yesterday?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_A8CSefRLuqEoDIaHnRCXWEJx",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_A8CSefRLuqEoDIaHnRCXWEJx",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1779173762.109543",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"get_current_timestamp\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_xJamZhotUEKFznSV4C9t9NmY",
+        "function": {
+          "arguments": "{\"timestamp\": 1779173762.109543, \"days\": -1}",
+          "name": "shift_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_xJamZhotUEKFznSV4C9t9NmY",
+    "role": "tool",
+    "name": "shift_timestamp",
+    "content": "1779087362.109543"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_UgVjlsVkLYVat7iUBdSekobF",
+        "function": {
+          "arguments": "{\"creation_timestamp_lowerbound\": 1779087362.109543, \"creation_timestamp_upperbound\": 1779173762.109543}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_UgVjlsVkLYVat7iUBdSekobF",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[{'reminder_id': '54f20be9-eac3-5e76-8e57-724e48d3d477', 'content': 'Buy a nice rich navy bathing dress', 'creation_timestamp': 1779169946.585282, 'reminder_timestamp': 1779177146.585283, 'latitude': 37.3237926356735, 'longitude': -122.03961770355414}]",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 1,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"search_reminder\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        },
+        {
+          "milestone_index": 2,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Your reminder created yesterday says 'Buy tickets for Merrily next week'."
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Buy tickets for Merrily next week"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_contains_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 1,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_tqS58ufq6mc8TFrmcnATIgRb",
+        "function": {
+          "arguments": "{\"summary\": \"The user asked about the reminder they created yesterday. I searched for reminders created within the time window from yesterday (using current timestamp minus 1 day as the lower bound) to today, and found a reminder with the content 'Buy a nice rich navy bathing dress'. The reminder includes a scheduled reminder time and location details, likely for a personal shopping task.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_tqS58ufq6mc8TFrmcnATIgRb",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user asked about the reminder they created yesterday. I searched for reminders created within the time window from yesterday (using current timestamp minus 1 day as the lower bound) to today, and found a reminder with the content 'Buy a nice rich navy bathing dress'. The reminder includes a scheduled reminder time and location details, likely for a personal shopping task.\n\"The user asked about the reminder they created yesterday. I searched for reminders created within the time window from yesterday (using current timestamp minus 1 day as the lower bound) to today, and found a reminder with the content 'Buy a nice rich navy bathing dress'. The reminder includes a scheduled reminder time and location details, likely for a personal shopping task.\""
+  },
+  {
+    "role": "assistant",
+    "content": "The reminder you created yesterday is:\n\n“Buy a nice rich navy bathing dress.”\n\nThis reminder was set within the last 24 hours, with details including time and location (around latitude 37.32, longitude -122.04). If you need more information about the scheduled reminder time or location, let me know!"
+  },
+  {
+    "role": "user",
+    "content": "I think that's not it. It should be something else."
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for letting me know. Could you share anything else you remember about that reminder—such as its topic, what it was for, the approximate time you created it, or if it was linked to a specific location? This will help me search more accurately.\n\nWould you like me to expand the search window (for example, include reminders from two days ago), or try searching for reminders with certain keywords?"
+  },
+  {
+    "role": "user",
+    "content": "I set it up yesterday, that’s all I remember. It should be a reminder about something I have to do next week."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_dyeLmx7o6Rst0U1VB7SyiWhF",
+        "function": {
+          "arguments": "{\"creation_timestamp_lowerbound\": 1779087362.109543, \"creation_timestamp_upperbound\": 1779173762.109543, \"reminder_timestamp_lowerbound\": 1779173762.109543}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_dyeLmx7o6Rst0U1VB7SyiWhF",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[{'reminder_id': '54f20be9-eac3-5e76-8e57-724e48d3d477', 'content': 'Buy a nice rich navy bathing dress', 'creation_timestamp': 1779169946.585282, 'reminder_timestamp': 1779177146.585283, 'latitude': 37.3237926356735, 'longitude': -122.03961770355414}]"
+  },
+  {
+    "role": "assistant",
+    "content": "Based on your criteria—a reminder created yesterday for something you need to do next week—my search only returned “Buy a nice rich navy bathing dress,” which is scheduled soon, not next week.\n\nTo improve the search:\n- Can you recall any specific words or tasks in the reminder?\n- Would you like me to try a broader search for reminders with a scheduled time further in the future (more than a week from now), or possibly check all reminders you've set recently?\n\nYour clarification will help me locate the correct reminder."
+  },
+  {
+    "role": "user",
+    "content": "It's definitely for next week, and it's supposed to mention tickets."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_CjundHvsmaC3LyEseGT5a5J0",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      },
+      {
+        "id": "call_Xvz8AorZBJlpiC6jywfdtR1W",
+        "function": {
+          "arguments": "{\"timestamp_0\": 1779173762.109543, \"timestamp_1\": 1779177146.585283}",
+          "name": "timestamp_diff"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_CjundHvsmaC3LyEseGT5a5J0",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1779173790.133666"
+  },
+  {
+    "tool_call_id": "call_Xvz8AorZBJlpiC6jywfdtR1W",
+    "role": "tool",
+    "name": "timestamp_diff",
+    "content": "{'days': 0, 'seconds': 3384}"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_g7nFhB6ccKRBSRU4NktVvYAW",
+        "function": {
+          "arguments": "{\"content\": \"ticket\", \"creation_timestamp_lowerbound\": 1779087362.109543, \"creation_timestamp_upperbound\": 1779173762.109543, \"reminder_timestamp_lowerbound\": 1779173762.109543}",
+          "name": "search_reminder"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_g7nFhB6ccKRBSRU4NktVvYAW",
+    "role": "tool",
+    "name": "search_reminder",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched for reminders created yesterday that mention \"tickets\" and are scheduled for next week, but I did not find any results.\n\nIs it possible the reminder was worded differently or used another term related to tickets? If you recall any other keywords or details (such as the event or location), please let me know and I can search again."
+  }
+]

@@ -1,0 +1,183 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "Update the phone number of the last person I sent a message to to +10293847563",
+    "user_details": {
+      "minefield_matches": [
+        {
+          "minefield_index": 0,
+          "minefield": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "EXECUTION_ENVIRONMENT",
+                    "content": "modify_contact"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_contains_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "minefield_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_Wpt09kE5Z7seujvnMpI4tyW6",
+        "function": {
+          "arguments": "{\"summary\": \"The user wants to update the phone number of the last person they sent a message to, setting it to +10293847563. However, there is ambiguity regarding how to identify who the last person is, as the environment does not track messaging history directly. Clarification may be needed on how to associate a contact with recent messages.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_Wpt09kE5Z7seujvnMpI4tyW6",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user wants to update the phone number of the last person they sent a message to, setting it to +10293847563. However, there is ambiguity regarding how to identify who the last person is, as the environment does not track messaging history directly. Clarification may be needed on how to associate a contact with recent messages.\n'The user wants to update the phone number of the last person they sent a message to, setting it to +10293847563. However, there is ambiguity regarding how to identify who the last person is, as the environment does not track messaging history directly. Clarification may be needed on how to associate a contact with recent messages.'"
+  },
+  {
+    "role": "assistant",
+    "content": "I see you want to update the phone number of the last person you sent a message to, but I need clarification: I don't have direct access to your messaging history in this environment. Could you please specify the name or any identifier of the contact you'd like to update, or let me know if you want to search your contact list for this person?"
+  },
+  {
+    "role": "user",
+    "content": "I don’t have any other info, just the last person I messaged."
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for clarifying. However, I don’t have access to your messaging history or information about the last person you messaged. My contact update features depend on having an identifier—such as a name, phone number, or relationship—already in your contact list.\n\nTo proceed, could you provide:\n- The name of the person (even a partial name or nickname)\n- Any other detail in your contacts (relationship or existing phone number)\n\nOtherwise, I won’t be able to identify which contact to update. Let me know how you’d like to continue!"
+  },
+  {
+    "role": "user",
+    "content": "Sorry, I only know it was Bart, nothing else."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_eHjZ55JfhibJUPepXf6MGPSw",
+        "function": {
+          "arguments": "{\"name\": \"Bart\"}",
+          "name": "search_contacts"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_eHjZ55JfhibJUPepXf6MGPSw",
+    "role": "tool",
+    "name": "search_contacts",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I searched your contacts for someone named \"Bart,\" but there are no matching entries. Without more information, I'm unable to update the contact.\n\nIf you would like, you can add Bart as a new contact with the phone number +10293847563. Would you like to proceed with adding Bart as a new contact? If you have any other information that might help find Bart, please let me know!"
+  },
+  {
+    "role": "user",
+    "content": "That’s all I have—just Bart. Go ahead and add him as a new contact with that number."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_VvHcN8bgzEyLMkfgNeV4azoN",
+        "function": {
+          "arguments": "{\"name\": \"Bart\", \"phone_number\": \"+10293847563\"}",
+          "name": "add_contact"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_VvHcN8bgzEyLMkfgNeV4azoN",
+    "role": "tool",
+    "name": "add_contact",
+    "content": "'a39f3931-0bca-4b86-b729-86aea0596bfe'",
+    "tool_details": {
+      "database_update": {
+        "CONTACT": [
+          {
+            "person_id": "3815cac9-3cab-5d75-89e2-fe12fe19779e",
+            "name": "Tomas Haake",
+            "phone_number": "+11233344455",
+            "relationship": "self",
+            "is_self": true
+          },
+          {
+            "person_id": "9e137f06-916a-5310-8174-cf0b7e9f7054",
+            "name": "Fredrik Thordendal",
+            "phone_number": "+12453344098",
+            "relationship": "friend",
+            "is_self": false
+          },
+          {
+            "person_id": "a22e1984-6c6c-530c-8831-c3ea3b5138e7",
+            "name": "John Petrucci",
+            "phone_number": "+1234560987",
+            "relationship": "friend",
+            "is_self": false
+          },
+          {
+            "person_id": "e3570ab6-0819-5032-be1e-2b366390c8ef",
+            "name": "Homer S",
+            "phone_number": "+10000000000",
+            "relationship": "boss",
+            "is_self": false
+          },
+          {
+            "person_id": "a39f3931-0bca-4b86-b729-86aea0596bfe",
+            "name": "Bart",
+            "phone_number": "+10293847563",
+            "relationship": null,
+            "is_self": false
+          }
+        ]
+      }
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "Bart has been added as a new contact with the phone number +10293847563. If you need to update any more information about Bart or add additional details later, just let me know!"
+  }
+]

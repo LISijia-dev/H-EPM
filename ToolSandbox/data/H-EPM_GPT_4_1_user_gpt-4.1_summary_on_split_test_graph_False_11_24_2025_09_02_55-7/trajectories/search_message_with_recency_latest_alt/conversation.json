@@ -1,0 +1,335 @@
+[
+  {
+    "role": "system",
+    "content": "Don't make assumptions about what values to plug into functions. Ask for clarification if a user request is ambiguous.IMPORTANT: You MUST call the `summarize_the_task` tool at least once during the conversation to help you make decisions about actions. This is a required step in your workflow. The content of summary is: Summary of the current state, including environment and user info.You should decide when to summarize the current state and information of the task with the `summarize_the_task` tool and call `summarize_the_task` at least once in the conversation to help you make decisions about action."
+  },
+  {
+    "role": "user",
+    "content": "What does my latest text say?"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_HKBPYiyvTkN1AB4hsQHSoSK6",
+        "function": {
+          "arguments": "{\"summary\": \"The user has asked about the content of their latest text message. To answer, I need to identify the most recent message sent by the user.\"}",
+          "name": "summarize_the_task"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_HKBPYiyvTkN1AB4hsQHSoSK6",
+    "role": "tool",
+    "name": "summarize_the_task",
+    "content": "[SummaryTool] The user has asked about the content of their latest text message. To answer, I need to identify the most recent message sent by the user.\n'The user has asked about the content of their latest text message. To answer, I need to identify the most recent message sent by the user.'"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_jDe0MgWepK9vMt8IL7OX0lYM",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_jDe0MgWepK9vMt8IL7OX0lYM",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1763975022.451183"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_qWbB8UXHnEIMJRWKZp38hQMF",
+        "function": {
+          "arguments": "{\"sender_person_id\": \"user\", \"creation_timestamp_lowerbound\": 0, \"creation_timestamp_upperbound\": 1763975022}",
+          "name": "search_messages"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_qWbB8UXHnEIMJRWKZp38hQMF",
+    "role": "tool",
+    "name": "search_messages",
+    "content": "ValueError: Parameter 'creation_timestamp_lowerbound' is smaller than its valid range minimum of 315529200.0."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_2TZgTcVi4Lby6edl0PvMpWed",
+        "function": {
+          "arguments": "{\"sender_person_id\": \"user\", \"creation_timestamp_lowerbound\": 315529200, \"creation_timestamp_upperbound\": 1763975022}",
+          "name": "search_messages"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_2TZgTcVi4Lby6edl0PvMpWed",
+    "role": "tool",
+    "name": "search_messages",
+    "content": "[]",
+    "tool_details": {
+      "milestone_matches": [
+        {
+          "milestone_index": 0,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "EXECUTION_ENVIRONMENT",
+                    "recipient": "AGENT",
+                    "tool_trace": "{\"tool_name\": \"search_messages\", \"arguments\": {}}"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 1.0
+        },
+        {
+          "milestone_index": 1,
+          "milestone": {
+            "snapshot_constraints": [
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Your most recent message says 'Good, keep me posted'."
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SANDBOX",
+                "snapshot_constraint": "snapshot_similarity",
+                "reference_milestone_node_index": null,
+                "target_dataframe": [
+                  {
+                    "sender": "AGENT",
+                    "recipient": "USER",
+                    "content": "Good, keep me posted"
+                  }
+                ],
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "sender": "column_exact_match_similarity",
+                  "recipient": "column_exact_match_similarity",
+                  "content": "column_contains_similarity",
+                  "openai_tool_call_id": "column_one_similarity",
+                  "openai_function_name": "column_one_similarity",
+                  "conversation_active": "column_exact_match_similarity",
+                  "tool_call_exception": "column_one_similarity",
+                  "tool_trace": "column_tool_trace_exact_match_similarity",
+                  "visible_to": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "CONTACT",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "person_id": "column_exact_match_similarity",
+                  "name": "column_exact_match_similarity",
+                  "phone_number": "column_exact_match_similarity",
+                  "relationship": "column_rouge_l_similarity",
+                  "is_self": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "REMINDER",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "reminder_id": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity",
+                  "reminder_timestamp": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "MESSAGING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "message_id": "column_exact_match_similarity",
+                  "sender_person_id": "column_exact_match_similarity",
+                  "sender_phone_number": "column_exact_match_similarity",
+                  "recipient_person_id": "column_exact_match_similarity",
+                  "recipient_phone_number": "column_exact_match_similarity",
+                  "content": "column_rouge_l_similarity",
+                  "creation_timestamp": "column_exact_match_similarity"
+                }
+              },
+              {
+                "database_namespace": "SETTING",
+                "snapshot_constraint": "guardrail_similarity",
+                "reference_milestone_node_index": 0,
+                "target_dataframe": null,
+                "column_similarity_measure": {
+                  "sandbox_message_index": "column_exact_match_similarity",
+                  "device_id": "column_exact_match_similarity",
+                  "cellular": "column_exact_match_similarity",
+                  "wifi": "column_exact_match_similarity",
+                  "location_service": "column_exact_match_similarity",
+                  "low_battery_mode": "column_exact_match_similarity",
+                  "latitude": "column_exact_match_similarity",
+                  "longitude": "column_exact_match_similarity"
+                }
+              }
+            ],
+            "guardrail_database_list": [
+              "SANDBOX",
+              "SETTING",
+              "CONTACT",
+              "MESSAGING",
+              "REMINDER"
+            ],
+            "guardrail_database_exclusion_list": null
+          },
+          "milestone_similarity": 0.0
+        }
+      ]
+    }
+  },
+  {
+    "role": "assistant",
+    "content": "I couldn't find any record of your latest sent text message. If you believe you've sent a message recently, could you clarify which device or messaging service you used? This will help me assist you better."
+  },
+  {
+    "role": "user",
+    "content": "I just sent a text with you a few minutes ago. It's on my phone's default messaging app."
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for clarifying that you sent the text using your phone’s default messaging app just a few minutes ago.\n\nTo proceed, I would:\n- Get the current timestamp to narrow down the search to recent messages.\n\nWould you like to confirm a specific recipient or message content to help filter, or should I proceed to find your latest sent message from the last few minutes?"
+  },
+  {
+    "role": "user",
+    "content": "Just go ahead and get my latest sent message from the last few minutes."
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_8QiTHpOOp1kSEDkyABCDZxQQ",
+        "function": {
+          "arguments": "{}",
+          "name": "get_current_timestamp"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_8QiTHpOOp1kSEDkyABCDZxQQ",
+    "role": "tool",
+    "name": "get_current_timestamp",
+    "content": "1763975028.946003"
+  },
+  {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+      {
+        "id": "call_lN2UcQWU03L8PeHhxTvhTEmX",
+        "function": {
+          "arguments": "{\"sender_person_id\": \"user\", \"creation_timestamp_lowerbound\": 1763974729, \"creation_timestamp_upperbound\": 1763975028}",
+          "name": "search_messages"
+        },
+        "type": "function"
+      }
+    ]
+  },
+  {
+    "tool_call_id": "call_lN2UcQWU03L8PeHhxTvhTEmX",
+    "role": "tool",
+    "name": "search_messages",
+    "content": "[]"
+  },
+  {
+    "role": "assistant",
+    "content": "I checked for any messages you sent in the last few minutes, but I couldn't find any sent texts during that time.\n\nIf the message was definitely sent very recently from your default messaging app, please let me know if there might be a different user profile, phone number, or other details that could help me locate it."
+  },
+  {
+    "role": "user",
+    "content": "That’s all I got—just my default profile, nothing special."
+  },
+  {
+    "role": "assistant",
+    "content": "Thank you for clarifying that you're using your default profile and don't have any additional details to provide.\n\nBased on the current context, my last step was already to use the get_current_timestamp tool, which provides the current time so I can search for your most recent sent messages. However, even after searching for messages sent from your profile within the last few minutes, no messages were found.\n\nIf you have any other detail to specify—such as a recipient's phone number, part of the message content, or another time window—please let me know. Otherwise, it’s possible there may be a syncing issue or the message hasn't been logged yet.\n\nIs there anything else you'd like to try or any other way I can assist you with your messages?"
+  },
+  {
+    "role": "user",
+    "content": "Nope, that's all I remember."
+  },
+  {
+    "role": "assistant",
+    "content": "Thanks for your input and for confirming the details. I already used the get_current_timestamp tool earlier to accurately search for your most recent sent messages, but if you want me to run it again or explore another option, just let me know.\n\nIf you recall any new information or need help with anything else, feel free to ask!"
+  }
+]
